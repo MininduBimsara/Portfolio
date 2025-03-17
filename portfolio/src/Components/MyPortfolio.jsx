@@ -1,65 +1,114 @@
-import data from "../data/index.json";
+import React from "react";
 
 export default function MyPortfolio() {
+  // Sample data - replace with your actual data import
+  const portfolioData = [
+    {
+      id: 1,
+      title: "E-commerce Platform",
+      description:
+        "Built a full-stack e-commerce platform with React, Node.js, and MongoDB",
+      image: "/images/portfolio1.jpg",
+      link: "View Project",
+      url: "#",
+    },
+    {
+      id: 2,
+      title: "Task Management App",
+      description:
+        "Developed a task management application with authentication and real-time updates",
+      image: "/images/portfolio2.jpg",
+      link: "View Project",
+      url: "#",
+    },
+    {
+      id: 3,
+      title: "Fitness Tracker",
+      description:
+        "Created a fitness tracking application with data visualization and progress tracking",
+      image: "/images/portfolio3.jpg",
+      link: "View Project",
+      url: "#",
+    },
+  ];
+
   return (
-    <section className="portfolio--section" id="MyPortfolio">
-      <div className="portfolio--container-box">
-        <div className="portfolio--container">
-          <p className="sub--title">Recent Projects</p>
-          <h2 className="section--heading">My Portfolio</h2>
-        </div>
-        <div>
-          <button className="btn btn-github">
+    <section id="portfolio" className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
+          <div className="mb-6 md:mb-0">
+            <h3 className="text-indigo-600 font-semibold text-lg mb-2">
+              Recent Work
+            </h3>
+            <h2 className="text-4xl font-bold text-gray-800">My Portfolio</h2>
+          </div>
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white py-3 px-6 rounded-lg transition duration-300"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 33 33"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
               fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-github"
             >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M16.3333 0.166748C7.50028 0.166748 0.333252 7.33378 0.333252 16.1667C0.333252 24.9997 7.50028 32.1667 16.3333 32.1667C25.1489 32.1667 32.3333 24.9997 32.3333 16.1667C32.3333 7.33378 25.1489 0.166748 16.3333 0.166748ZM26.9016 7.54202C28.8105 9.8674 29.9559 12.8348 29.9906 16.0452C29.5394 15.9585 25.0274 15.0387 20.4808 15.6114C20.3767 15.3858 20.2899 15.1428 20.1858 14.8999C19.9081 14.2405 19.5958 13.5637 19.2834 12.9216C24.3159 10.8739 26.6066 7.9238 26.9016 7.54202ZM16.3333 2.52684C19.804 2.52684 22.9797 3.82836 25.3919 5.96285C25.1489 6.30992 23.0838 9.06914 18.2248 10.8912C15.9862 6.77846 13.5047 3.41187 13.1229 2.89126C14.1467 2.64831 15.2227 2.52684 16.3333 2.52684ZM10.5199 3.811C10.8843 4.2969 13.3138 7.68085 15.5871 11.7068C9.20093 13.4075 3.56102 13.3728 2.95364 13.3728C3.83867 9.13855 6.70201 5.61577 10.5199 3.811ZM2.65863 16.1841C2.65863 16.0452 2.65863 15.9064 2.65863 15.7676C3.24865 15.7849 9.87772 15.8717 16.6977 13.824C17.0969 14.5875 17.4613 15.3684 17.8084 16.1493C17.6348 16.2014 17.4439 16.2535 17.2704 16.3055C10.2248 18.5788 6.47642 24.7914 6.16405 25.312C3.99485 22.8999 2.65863 19.6895 2.65863 16.1841ZM16.3333 29.8413C13.1749 29.8413 10.2595 28.7654 7.95147 26.9606C8.19442 26.4574 10.971 21.1125 18.676 18.4227C18.7107 18.4053 18.7281 18.4053 18.7628 18.388C20.689 23.3684 21.47 27.5506 21.6782 28.748C20.0296 29.4595 18.2248 29.8413 16.3333 29.8413ZM23.9515 27.4986C23.8127 26.6656 23.0838 22.6743 21.2964 17.7632C25.5828 17.0864 29.3311 18.1971 29.7997 18.3533C29.2097 22.1537 27.0231 25.4335 23.9515 27.4986Z"
-                fill="currentColor"
-              />
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
-            Visit My GitHub
-          </button>
+            GitHub Profile
+          </a>
         </div>
-      </div>
-      <div className="portfolio--section--container">
-        {data?.portfolio?.map((item, index) => (
-          <div key={index} className="portfolio--section--card">
-            <div className="portfolio--section--img">
-              <img src={item.src} alt="Placeholder" />
-            </div>
-            <div className="portfolio--section--card--content">
-              <div>
-                <h3 className="portfolio--section--title">{item.title}</h3>
-                <p className="text-md">{item.description}</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {portfolioData.map((project) => (
+            <div
+              key={project.id}
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
               </div>
-              <p className="text-sm portfolio--link">
-                {item.link}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 19"
-                  fill="none"
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 mb-4">{project.description}</p>
+                <a
+                  href={project.url}
+                  className="flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-colors duration-300"
                 >
-                  <path
-                    d="M4.66667 1.66675H18V15.0001M18 1.66675L2 17.6667L18 1.66675Z"
+                  {project.link}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
                     stroke="currentColor"
-                    stroke-width="2.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </p>
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-2"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
