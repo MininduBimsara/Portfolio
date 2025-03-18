@@ -127,7 +127,7 @@ function Navbar() {
                 smooth={true}
                 offset={-70}
                 duration={500}
-                to="testimonial"
+                to="testimonials"
                 className="text-gray-800 hover:text-indigo-600 transition-colors duration-300 cursor-pointer"
               >
                 Testimonials

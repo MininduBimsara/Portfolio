@@ -33,7 +33,7 @@ export default function MyPortfolio() {
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-gray-50">
+    <section id="MyPortfolio" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="mb-6 md:mb-0">
