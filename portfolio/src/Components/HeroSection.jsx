@@ -38,7 +38,7 @@ export default function HeroSection() {
             <div className="absolute -bottom-12 -left-12 bg-indigo-600 w-64 h-64 rounded-full opacity-10"></div>
             <div className="relative z-10 bg-white rounded-2xl shadow-xl overflow-hidden">
               <img
-                src="/api/placeholder/600/600"
+                src="/img/hero.jpg"
                 alt="Professional portrait"
                 className="w-full h-auto object-cover"
               />

@@ -8,7 +8,7 @@ export default function MyPortfolio() {
       title: "E-commerce Platform",
       description:
         "Built a full-stack e-commerce platform with React, Node.js, and MongoDB",
-      image: "/images/portfolio1.jpg",
+      image: "/img/portfolio1.jpg",
       link: "View Project",
       url: "#",
     },
@@ -17,7 +17,7 @@ export default function MyPortfolio() {
       title: "Task Management App",
       description:
         "Developed a task management application with authentication and real-time updates",
-      image: "/images/portfolio2.jpg",
+      image: "/img/portfolio2.jpg",
       link: "View Project",
       url: "#",
     },
@@ -26,7 +26,7 @@ export default function MyPortfolio() {
       title: "Fitness Tracker",
       description:
         "Created a fitness tracking application with data visualization and progress tracking",
-      image: "/images/portfolio3.jpg",
+      image: "/img/portfolio3.jpg",
       link: "View Project",
       url: "#",
     },

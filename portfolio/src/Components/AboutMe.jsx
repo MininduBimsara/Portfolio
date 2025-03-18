@@ -17,7 +17,7 @@ export default function AboutMe() {
             <div className="absolute -bottom-6 -right-6 w-64 h-64 bg-indigo-200 rounded-xl -z-10"></div>
             <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
               <img
-                src="/api/placeholder/600/600"
+                src="/img/about.png"
                 alt="About Me"
                 className="w-full h-auto object-cover"
               />
