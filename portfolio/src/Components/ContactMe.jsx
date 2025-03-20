@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Send, Phone, Mail, User, Clock, Sparkles } from "lucide-react";
 
 export default function ContactMe() {
   const [formData, setFormData] = useState({
@@ -11,12 +12,34 @@ export default function ContactMe() {
     acceptTerms: false,
   });
 
+  const [suggestions, setSuggestions] = useState([]);
+  const [activeField, setActiveField] = useState(null);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+
+    // AI-assisted suggestions based on input
+    if (name === "message" && value.length > 10) {
+      setSuggestions([
+        "Can you provide more details about your project?",
+        "What is your expected timeline?",
+        "Do you have a specific budget in mind?",
+      ]);
+    } else if (name === "message" && value.length <= 10) {
+      setSuggestions([]);
+    }
+  };
+
+  const handleFieldFocus = (fieldName) => {
+    setActiveField(fieldName);
+  };
+
+  const handleFieldBlur = () => {
+    setActiveField(null);
   };
 
   const handleSubmit = (e) => {
@@ -25,196 +48,334 @@ export default function ContactMe() {
     // Add your form submission logic here
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    setFormData((prev) => ({
+      ...prev,
+      message: prev.message ? `${prev.message} ${suggestion}` : suggestion,
+    }));
+  };
+
   return (
     <section
       id="Contact"
-      className="bg-gradient-to-br from-slate-50 to-blue-50 py-24"
+      className="relative py-20 overflow-hidden bg-gradient-to-br from-indigo-950 to-slate-900"
     >
-      <div className="max-w-5xl mx-auto px-6">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-blue-500 opacity-10 blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="inline-block bg-blue-600 text-white text-sm px-3 py-1 rounded-full mb-3">
-            Let's Connect
-          </span>
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <div className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1.5 rounded-full mb-4">
+            <Sparkles className="w-4 h-4 mr-2" />
+            <span className="text-sm font-medium">Let's Connect</span>
+          </div>
+          <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
             Get in Touch
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas or
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            I'm always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision.
           </p>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-lg p-8 md:p-10"
-        >
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                First Name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                placeholder="Your first name"
-                required
-              />
+        <div className="grid lg:grid-cols-5 gap-8 items-start">
+          {/* Contact info card */}
+          <div className="lg:col-span-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 shadow-xl">
+            <h3 className="text-2xl font-semibold text-white mb-6">
+              Contact Information
+            </h3>
+
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-indigo-900/50 p-3 rounded-lg">
+                  <Mail className="w-6 h-6 text-blue-400" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-400">Email</p>
+                  <p className="text-white">contact@yourname.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-indigo-900/50 p-3 rounded-lg">
+                  <Phone className="w-6 h-6 text-blue-400" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-400">Phone</p>
+                  <p className="text-white">+1 (555) 123-4567</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-indigo-900/50 p-3 rounded-lg">
+                  <Clock className="w-6 h-6 text-blue-400" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-400">
+                    Availability
+                  </p>
+                  <p className="text-white">Mon-Fri: 9AM-6PM EST</p>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                placeholder="Your last name"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                placeholder="your.email@example.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="phoneNumber"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                placeholder="Your phone number"
-                required
-              />
+            <div className="mt-10">
+              <h4 className="text-lg font-medium text-white mb-4">Connect</h4>
+              <div className="flex space-x-4">
+                {["github", "twitter", "linkedin", "instagram"].map(
+                  (platform) => (
+                    <a
+                      key={platform}
+                      href="#"
+                      className="bg-slate-700/50 hover:bg-slate-600 p-3 rounded-full transition-colors"
+                    >
+                      <span className="sr-only">{platform}</span>
+                      <div className="w-5 h-5 text-blue-400"></div>
+                    </a>
+                  )
+                )}
+              </div>
             </div>
           </div>
 
-          <div className="mb-6">
-            <label
-              htmlFor="topic"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Choose a Topic
-            </label>
-            <select
-              id="topic"
-              name="topic"
-              value={formData.topic}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all appearance-none bg-no-repeat bg-right"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23999' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                backgroundSize: "20px",
-              }}
-              required
-            >
-              <option value="">Select a topic</option>
-              <option value="projectInquiry">Project Inquiry</option>
-              <option value="jobOpportunity">Job Opportunity</option>
-              <option value="collaboration">Collaboration</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
+          {/* Contact form */}
+          <div className="lg:col-span-3 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 shadow-xl">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="relative">
+                  <label
+                    htmlFor="firstName"
+                    className={`block text-sm font-medium mb-1 transition-colors ${
+                      activeField === "firstName"
+                        ? "text-blue-400"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    First Name
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      onFocus={() => handleFieldFocus("firstName")}
+                      onBlur={handleFieldBlur}
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      placeholder="Your first name"
+                      required
+                    />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  </div>
+                </div>
 
-          <div className="mb-6">
-            <label
-              htmlFor="message"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="5"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-y"
-              placeholder="Tell me about your project, goals, or questions..."
-              required
-            ></textarea>
-          </div>
+                <div className="relative">
+                  <label
+                    htmlFor="lastName"
+                    className={`block text-sm font-medium mb-1 transition-colors ${
+                      activeField === "lastName"
+                        ? "text-blue-400"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    Last Name
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      onFocus={() => handleFieldFocus("lastName")}
+                      onBlur={handleFieldBlur}
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      placeholder="Your last name"
+                      required
+                    />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  </div>
+                </div>
 
-          <div className="flex items-center mb-8">
-            <input
-              type="checkbox"
-              id="acceptTerms"
-              name="acceptTerms"
-              checked={formData.acceptTerms}
-              onChange={handleChange}
-              className="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-              required
-            />
-            <label htmlFor="acceptTerms" className="ml-2 text-sm text-gray-600">
-              I agree to the{" "}
-              <a href="#" className="text-blue-600 hover:underline">
-                Terms and Conditions
-              </a>{" "}
-              and{" "}
-              <a href="#" className="text-blue-600 hover:underline">
-                Privacy Policy
-              </a>
-            </label>
-          </div>
+                <div className="relative">
+                  <label
+                    htmlFor="email"
+                    className={`block text-sm font-medium mb-1 transition-colors ${
+                      activeField === "email"
+                        ? "text-blue-400"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    Email
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onFocus={() => handleFieldFocus("email")}
+                      onBlur={handleFieldBlur}
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  </div>
+                </div>
 
-          <button
-            type="submit"
-            className="w-full md:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 flex items-center justify-center"
-          >
-            <span>Send Message</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </button>
-        </form>
+                <div className="relative">
+                  <label
+                    htmlFor="phoneNumber"
+                    className={`block text-sm font-medium mb-1 transition-colors ${
+                      activeField === "phoneNumber"
+                        ? "text-blue-400"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    Phone Number
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="tel"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      onFocus={() => handleFieldFocus("phoneNumber")}
+                      onBlur={handleFieldBlur}
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      placeholder="Your phone number"
+                      required
+                    />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <label
+                  htmlFor="topic"
+                  className={`block text-sm font-medium mb-1 transition-colors ${
+                    activeField === "topic" ? "text-blue-400" : "text-gray-300"
+                  }`}
+                >
+                  Choose a Topic
+                </label>
+                <select
+                  id="topic"
+                  name="topic"
+                  value={formData.topic}
+                  onChange={handleChange}
+                  onFocus={() => handleFieldFocus("topic")}
+                  onBlur={handleFieldBlur}
+                  className="w-full px-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 appearance-none"
+                  required
+                >
+                  <option value="" className="bg-slate-800">
+                    Select a topic
+                  </option>
+                  <option value="projectInquiry" className="bg-slate-800">
+                    Project Inquiry
+                  </option>
+                  <option value="jobOpportunity" className="bg-slate-800">
+                    Job Opportunity
+                  </option>
+                  <option value="collaboration" className="bg-slate-800">
+                    Collaboration
+                  </option>
+                  <option value="other" className="bg-slate-800">
+                    Other
+                  </option>
+                </select>
+              </div>
+
+              <div className="relative">
+                <label
+                  htmlFor="message"
+                  className={`block text-sm font-medium mb-1 transition-colors ${
+                    activeField === "message"
+                      ? "text-blue-400"
+                      : "text-gray-300"
+                  }`}
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  onFocus={() => handleFieldFocus("message")}
+                  onBlur={handleFieldBlur}
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 resize-y"
+                  placeholder="Tell me about your project, goals, or questions..."
+                  required
+                ></textarea>
+              </div>
+
+              {suggestions.length > 0 && (
+                <div className="bg-slate-700/50 rounded-xl p-4">
+                  <p className="text-sm text-blue-400 mb-3 flex items-center">
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    AI Suggestions:
+                  </p>
+                  <div className="space-y-2">
+                    {suggestions.map((suggestion, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => handleSuggestionClick(suggestion)}
+                        className="w-full text-left px-4 py-2 bg-slate-800/70 text-gray-300 rounded-lg hover:bg-slate-700 border border-slate-600/50 hover:border-blue-500/50 transition-all"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="acceptTerms"
+                  name="acceptTerms"
+                  checked={formData.acceptTerms}
+                  onChange={handleChange}
+                  className="w-5 h-5 text-blue-600 rounded border-gray-600 focus:ring-blue-500 bg-gray-700"
+                  required
+                />
+                <label
+                  htmlFor="acceptTerms"
+                  className="ml-2 text-sm text-gray-300"
+                >
+                  I agree to the{" "}
+                  <a href="#" className="text-blue-400 hover:underline">
+                    Terms and Conditions
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-blue-400 hover:underline">
+                    Privacy Policy
+                  </a>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center shadow-lg shadow-blue-600/20"
+              >
+                <span>Send Message</span>
+                <Send className="w-5 h-5 ml-2" />
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   );
