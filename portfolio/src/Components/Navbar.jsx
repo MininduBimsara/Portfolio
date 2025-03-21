@@ -89,7 +89,7 @@ function Navbar() {
                 offset={-70}
                 duration={500}
                 to="heroSection"
-                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 Home
               </Link>
@@ -102,7 +102,7 @@ function Navbar() {
                 offset={-70}
                 duration={500}
                 to="MyPortfolio"
-                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 Portfolio
               </Link>
@@ -115,7 +115,7 @@ function Navbar() {
                 offset={-70}
                 duration={500}
                 to="AboutMe"
-                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 About Me
               </Link>
@@ -128,7 +128,7 @@ function Navbar() {
                 offset={-70}
                 duration={500}
                 to="testimonials"
-                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 Testimonials
               </Link>

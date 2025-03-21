@@ -58,21 +58,21 @@ export default function ContactMe() {
   return (
     <section
       id="Contact"
-      className="relative py-20 overflow-hidden bg-gradient-to-br from-indigo-950 to-slate-900"
+      className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800"
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-blue-500 opacity-10 blur-3xl"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-orange-500 opacity-10 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-orange-400 opacity-10 blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1.5 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center bg-gradient-to-r from-orange-500 to-amber-400 text-white px-4 py-1.5 rounded-full mb-4">
             <Sparkles className="w-4 h-4 mr-2" />
             <span className="text-sm font-medium">Let's Connect</span>
           </div>
-          <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+          <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-500 mb-4">
             Get in Touch
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -83,15 +83,15 @@ export default function ContactMe() {
 
         <div className="grid lg:grid-cols-5 gap-8 items-start">
           {/* Contact info card */}
-          <div className="lg:col-span-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 shadow-xl">
+          <div className="lg:col-span-2 bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 shadow-xl">
             <h3 className="text-2xl font-semibold text-white mb-6">
               Contact Information
             </h3>
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-indigo-900/50 p-3 rounded-lg">
-                  <Mail className="w-6 h-6 text-blue-400" />
+                <div className="flex-shrink-0 bg-gray-700/50 p-3 rounded-lg">
+                  <Mail className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-400">Email</p>
@@ -100,8 +100,8 @@ export default function ContactMe() {
               </div>
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-indigo-900/50 p-3 rounded-lg">
-                  <Phone className="w-6 h-6 text-blue-400" />
+                <div className="flex-shrink-0 bg-gray-700/50 p-3 rounded-lg">
+                  <Phone className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-400">Phone</p>
@@ -110,8 +110,8 @@ export default function ContactMe() {
               </div>
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-indigo-900/50 p-3 rounded-lg">
-                  <Clock className="w-6 h-6 text-blue-400" />
+                <div className="flex-shrink-0 bg-gray-700/50 p-3 rounded-lg">
+                  <Clock className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-400">
@@ -130,10 +130,10 @@ export default function ContactMe() {
                     <a
                       key={platform}
                       href="#"
-                      className="bg-slate-700/50 hover:bg-slate-600 p-3 rounded-full transition-colors"
+                      className="bg-gray-700/50 hover:bg-gray-600 p-3 rounded-full transition-colors"
                     >
                       <span className="sr-only">{platform}</span>
-                      <div className="w-5 h-5 text-blue-400"></div>
+                      <div className="w-5 h-5 text-orange-400"></div>
                     </a>
                   )
                 )}
@@ -142,7 +142,7 @@ export default function ContactMe() {
           </div>
 
           {/* Contact form */}
-          <div className="lg:col-span-3 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 shadow-xl">
+          <div className="lg:col-span-3 bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 shadow-xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="relative">
@@ -150,7 +150,7 @@ export default function ContactMe() {
                     htmlFor="firstName"
                     className={`block text-sm font-medium mb-1 transition-colors ${
                       activeField === "firstName"
-                        ? "text-blue-400"
+                        ? "text-orange-400"
                         : "text-gray-300"
                     }`}
                   >
@@ -165,11 +165,11 @@ export default function ContactMe() {
                       onChange={handleChange}
                       onFocus={() => handleFieldFocus("firstName")}
                       onBlur={handleFieldBlur}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 transition-all"
                       placeholder="Your first name"
                       required
                     />
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   </div>
                 </div>
 
@@ -178,7 +178,7 @@ export default function ContactMe() {
                     htmlFor="lastName"
                     className={`block text-sm font-medium mb-1 transition-colors ${
                       activeField === "lastName"
-                        ? "text-blue-400"
+                        ? "text-orange-400"
                         : "text-gray-300"
                     }`}
                   >
@@ -193,11 +193,11 @@ export default function ContactMe() {
                       onChange={handleChange}
                       onFocus={() => handleFieldFocus("lastName")}
                       onBlur={handleFieldBlur}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 transition-all"
                       placeholder="Your last name"
                       required
                     />
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   </div>
                 </div>
 
@@ -206,7 +206,7 @@ export default function ContactMe() {
                     htmlFor="email"
                     className={`block text-sm font-medium mb-1 transition-colors ${
                       activeField === "email"
-                        ? "text-blue-400"
+                        ? "text-orange-400"
                         : "text-gray-300"
                     }`}
                   >
@@ -221,11 +221,11 @@ export default function ContactMe() {
                       onChange={handleChange}
                       onFocus={() => handleFieldFocus("email")}
                       onBlur={handleFieldBlur}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 transition-all"
                       placeholder="your.email@example.com"
                       required
                     />
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   </div>
                 </div>
 
@@ -234,7 +234,7 @@ export default function ContactMe() {
                     htmlFor="phoneNumber"
                     className={`block text-sm font-medium mb-1 transition-colors ${
                       activeField === "phoneNumber"
-                        ? "text-blue-400"
+                        ? "text-orange-400"
                         : "text-gray-300"
                     }`}
                   >
@@ -249,11 +249,11 @@ export default function ContactMe() {
                       onChange={handleChange}
                       onFocus={() => handleFieldFocus("phoneNumber")}
                       onBlur={handleFieldBlur}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 transition-all"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 transition-all"
                       placeholder="Your phone number"
                       required
                     />
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   </div>
                 </div>
               </div>
@@ -262,7 +262,9 @@ export default function ContactMe() {
                 <label
                   htmlFor="topic"
                   className={`block text-sm font-medium mb-1 transition-colors ${
-                    activeField === "topic" ? "text-blue-400" : "text-gray-300"
+                    activeField === "topic"
+                      ? "text-orange-400"
+                      : "text-gray-300"
                   }`}
                 >
                   Choose a Topic
@@ -274,22 +276,22 @@ export default function ContactMe() {
                   onChange={handleChange}
                   onFocus={() => handleFieldFocus("topic")}
                   onBlur={handleFieldBlur}
-                  className="w-full px-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 appearance-none"
+                  className="w-full px-4 py-3 rounded-xl border bg-gray-800 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-gray-700 placeholder-gray-400 appearance-none"
                   required
                 >
-                  <option value="" className="bg-slate-800">
+                  <option value="" className="bg-gray-800">
                     Select a topic
                   </option>
-                  <option value="projectInquiry" className="bg-slate-800">
+                  <option value="projectInquiry" className="bg-gray-800">
                     Project Inquiry
                   </option>
-                  <option value="jobOpportunity" className="bg-slate-800">
+                  <option value="jobOpportunity" className="bg-gray-800">
                     Job Opportunity
                   </option>
-                  <option value="collaboration" className="bg-slate-800">
+                  <option value="collaboration" className="bg-gray-800">
                     Collaboration
                   </option>
-                  <option value="other" className="bg-slate-800">
+                  <option value="other" className="bg-gray-800">
                     Other
                   </option>
                 </select>
@@ -300,7 +302,7 @@ export default function ContactMe() {
                   htmlFor="message"
                   className={`block text-sm font-medium mb-1 transition-colors ${
                     activeField === "message"
-                      ? "text-blue-400"
+                      ? "text-orange-400"
                       : "text-gray-300"
                   }`}
                 >
@@ -314,15 +316,15 @@ export default function ContactMe() {
                   onFocus={() => handleFieldFocus("message")}
                   onBlur={handleFieldBlur}
                   rows="4"
-                  className="w-full px-4 py-3 rounded-xl border bg-slate-800/50 border-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400 resize-y"
+                  className="w-full px-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 resize-y"
                   placeholder="Tell me about your project, goals, or questions..."
                   required
                 ></textarea>
               </div>
 
               {suggestions.length > 0 && (
-                <div className="bg-slate-700/50 rounded-xl p-4">
-                  <p className="text-sm text-blue-400 mb-3 flex items-center">
+                <div className="bg-gray-700/50 rounded-xl p-4">
+                  <p className="text-sm text-orange-400 mb-3 flex items-center">
                     <Sparkles className="w-4 h-4 mr-2" />
                     AI Suggestions:
                   </p>
@@ -332,7 +334,7 @@ export default function ContactMe() {
                         key={index}
                         type="button"
                         onClick={() => handleSuggestionClick(suggestion)}
-                        className="w-full text-left px-4 py-2 bg-slate-800/70 text-gray-300 rounded-lg hover:bg-slate-700 border border-slate-600/50 hover:border-blue-500/50 transition-all"
+                        className="w-full text-left px-4 py-2 bg-gray-800/70 text-gray-300 rounded-lg hover:bg-gray-700 border border-gray-600/50 hover:border-orange-500/50 transition-all"
                       >
                         {suggestion}
                       </button>
@@ -348,7 +350,7 @@ export default function ContactMe() {
                   name="acceptTerms"
                   checked={formData.acceptTerms}
                   onChange={handleChange}
-                  className="w-5 h-5 text-blue-600 rounded border-gray-600 focus:ring-blue-500 bg-gray-700"
+                  className="w-5 h-5 text-orange-600 rounded border-gray-600 focus:ring-orange-500 bg-gray-700"
                   required
                 />
                 <label
@@ -356,11 +358,11 @@ export default function ContactMe() {
                   className="ml-2 text-sm text-gray-300"
                 >
                   I agree to the{" "}
-                  <a href="#" className="text-blue-400 hover:underline">
+                  <a href="#" className="text-orange-400 hover:underline">
                     Terms and Conditions
                   </a>{" "}
                   and{" "}
-                  <a href="#" className="text-blue-400 hover:underline">
+                  <a href="#" className="text-orange-400 hover:underline">
                     Privacy Policy
                   </a>
                 </label>
@@ -368,7 +370,7 @@ export default function ContactMe() {
 
               <button
                 type="submit"
-                className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center shadow-lg shadow-blue-600/20"
+                className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center shadow-lg shadow-orange-600/20"
               >
                 <span>Send Message</span>
                 <Send className="w-5 h-5 ml-2" />

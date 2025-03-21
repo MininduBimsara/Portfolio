@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 export default function Testimonials() {
   const [visibleTestimonials, setVisibleTestimonials] = useState([]);
 
-  // Sample data
   const testimonialData = [
     {
       id: 1,
@@ -31,7 +30,6 @@ export default function Testimonials() {
     },
   ];
 
-  // Simulate the testimonials streaming in one by one
   useEffect(() => {
     const timer = setInterval(() => {
       setVisibleTestimonials((prev) => {
@@ -42,26 +40,15 @@ export default function Testimonials() {
       });
     }, 2000);
 
-    // Reset and start again when all testimonials are visible
-    // const resetTimer = setTimeout(() => {
-    //   if (visibleTestimonials.length === testimonialData.length) {
-    //     setVisibleTestimonials([]);
-    //   }
-    // }, (testimonialData.length + 1) * 2000);
-
-    // return () => {
-    //   clearInterval(timer);
-    //   clearTimeout(resetTimer);
-    // };
+    return () => clearInterval(timer);
   }, [visibleTestimonials.length]);
 
-  // Waveform animation component
   const Waveform = () => (
     <div className="flex items-center h-4 space-x-1">
       {[...Array(5)].map((_, i) => (
         <div
           key={i}
-          className="w-1 bg-indigo-400 rounded-full opacity-80"
+          className="w-1 bg-orange-400 rounded-full opacity-80"
           style={{
             height: `${Math.random() * 12 + 4}px`,
             animation: `waveform ${
@@ -77,14 +64,14 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-20 bg-gradient-to-b from-indigo-50 to-white overflow-hidden"
+      className="py-20 bg-gradient-to-b from-gray-800 to-gray-900 overflow-visible"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h3 className="text-indigo-600 font-semibold text-lg mb-2">
-            Client Reviews
+          <h3 className="text-orange-600 font-semibold text-lg mb-2 z-10">
+            <span className="text-orange-600">Client Reviews</span>
           </h3>
-          <h2 className="text-4xl font-bold text-gray-800">What People Say</h2>
+          <h2 className="text-4xl font-bold text-gray-300">What People Say</h2>
         </div>
 
         <style jsx>{`
@@ -119,13 +106,13 @@ export default function Testimonials() {
           }
           @keyframes pulse {
             0% {
-              box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+              box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
             }
             70% {
-              box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+              box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
             }
             100% {
-              box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+              box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
             }
           }
         `}</style>
@@ -145,13 +132,12 @@ export default function Testimonials() {
                   animation: isVisible ? `fadeIn 0.6s ease-out forwards` : "",
                   height: isVisible ? "auto" : "0",
                   margin: isVisible ? "" : "0",
-                  overflow: "hidden",
+                  overflow: "visible",
                 }}
               >
-                {/* Avatar with floating effect */}
                 <div className="flex-shrink-0 mr-4 relative">
                   <div
-                    className="w-16 h-16 rounded-full overflow-hidden border-2 border-white"
+                    className="w-16 h-16 rounded-full overflow-visible border-2 border-white"
                     style={{
                       animation: `float 6s ease-in-out infinite`,
                       boxShadow:
@@ -164,16 +150,17 @@ export default function Testimonials() {
                       src={testimonial.avatar}
                       alt={testimonial.author}
                       className="w-full h-full object-cover"
+                      style={{
+                        transform: "translateY(0)", // Ensure the image doesn't get cut off
+                      }}
                     />
                   </div>
-                  {/* Subtle reflection */}
                   <div
                     className="w-12 h-6 bg-white opacity-20 rounded-full mx-auto -mt-3 blur-sm"
                     style={{ transform: "rotateX(60deg)" }}
                   ></div>
                 </div>
 
-                {/* Message capsule */}
                 <div
                   className="flex-grow bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-3xl px-6 py-4 shadow-lg relative"
                   style={{
@@ -181,7 +168,6 @@ export default function Testimonials() {
                     animation: `pulse 2s infinite`,
                   }}
                 >
-                  {/* Waveform animation */}
                   <div className="absolute top-4 right-4">
                     <Waveform />
                   </div>
@@ -191,7 +177,7 @@ export default function Testimonials() {
                       <svg
                         key={i}
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-yellow-400"
+                        className="h-4 w-4 text-orange-400"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -216,33 +202,6 @@ export default function Testimonials() {
               </div>
             );
           })}
-
-          {/* Loading indicator when no testimonials are visible
-          {visibleTestimonials.length === 0 && (
-            <div className="text-center py-8 text-indigo-500">
-              <svg
-                className="animate-spin h-8 w-8 mx-auto mb-4"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              <p>Loading client testimonials...</p>
-            </div>
-          )} */}
         </div>
       </div>
     </section>
