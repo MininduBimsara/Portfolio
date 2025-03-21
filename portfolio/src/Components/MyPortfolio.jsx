@@ -93,7 +93,7 @@ export default function MyPortfolio() {
         </div>
 
         {/* Content container */}
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="w-full px-4 ">
           <div className="flex flex-col justify-center items-center">
             {/* Main heading with gradient */}
             <h2 className="font-bold text-5xl md:text-6xl tracking-tight">
@@ -106,7 +106,8 @@ export default function MyPortfolio() {
               <p className="text-white text-lg leading-relaxed">
                 <span className="text-white">
                   Exploring the intersection of design and technology through
-                thoughtful solutions</span>
+                </span>
+                <span className="text-white">thoughtful solutions</span>
               </p>
             </div>
           </div>

@@ -46,7 +46,7 @@ function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-lg py-3" : "bg-transparent py-5"
+        scrolled ? "bg-gray-100 shadow-lg py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -62,17 +62,17 @@ function Navbar() {
           aria-label="Toggle menu"
         >
           <span
-            className={`block w-6 h-0.5 bg-gray-900 transition-all duration-300 ${
+            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
               navActive ? "transform rotate-45 translate-y-2" : ""
             }`}
           ></span>
           <span
-            className={`block w-6 h-0.5 bg-gray-900 transition-all duration-300 ${
+            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
               navActive ? "opacity-0" : "opacity-100"
             }`}
           ></span>
           <span
-            className={`block w-6 h-0.5 bg-gray-900 transition-all duration-300 ${
+            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
               navActive ? "transform -rotate-45 -translate-y-2" : ""
             }`}
           ></span>
@@ -83,52 +83,52 @@ function Navbar() {
           <ul className="flex space-x-10">
             <li>
               <Link
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="heroSection"
-                className="text-gray-800 hover:text-indigo-600 transition-colors duration-300 cursor-pointer"
+                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 Home
               </Link>
             </li>
             <li>
               <Link
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="MyPortfolio"
-                className="text-gray-800 hover:text-indigo-600 transition-colors duration-300 cursor-pointer"
+                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 Portfolio
               </Link>
             </li>
             <li>
               <Link
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="AboutMe"
-                className="text-gray-800 hover:text-indigo-600 transition-colors duration-300 cursor-pointer"
+                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 About Me
               </Link>
             </li>
             <li>
               <Link
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="testimonials"
-                className="text-gray-800 hover:text-indigo-600 transition-colors duration-300 cursor-pointer"
+                className="text-gray-800 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
               >
                 Testimonials
               </Link>
@@ -140,7 +140,7 @@ function Navbar() {
             offset={-70}
             duration={500}
             to="Contact"
-            className="px-6 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-md"
+            className="px-6 py-2.5 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition-all duration-300 shadow-md"
           >
             Contact Me
           </Link>
@@ -149,7 +149,7 @@ function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 z-40 bg-white transform ${
+        className={`lg:hidden fixed inset-0 z-40 bg-gray-50 transform ${
           navActive ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out pt-20`}
       >
@@ -158,13 +158,13 @@ function Navbar() {
             <li>
               <Link
                 onClick={closeMenu}
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="heroSection"
-                className="text-xl text-gray-800 hover:text-indigo-600 transition-colors duration-300"
+                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
               >
                 Home
               </Link>
@@ -172,13 +172,13 @@ function Navbar() {
             <li>
               <Link
                 onClick={closeMenu}
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="MyPortfolio"
-                className="text-xl text-gray-800 hover:text-indigo-600 transition-colors duration-300"
+                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
               >
                 Portfolio
               </Link>
@@ -186,13 +186,13 @@ function Navbar() {
             <li>
               <Link
                 onClick={closeMenu}
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="AboutMe"
-                className="text-xl text-gray-800 hover:text-indigo-600 transition-colors duration-300"
+                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
               >
                 About Me
               </Link>
@@ -200,13 +200,13 @@ function Navbar() {
             <li>
               <Link
                 onClick={closeMenu}
-                activeClass="text-indigo-600 font-medium"
+                activeClass="text-orange-500 font-medium"
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 to="testimonial"
-                className="text-xl text-gray-800 hover:text-indigo-600 transition-colors duration-300"
+                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
               >
                 Testimonials
               </Link>
@@ -219,7 +219,7 @@ function Navbar() {
                 offset={-70}
                 duration={500}
                 to="Contact"
-                className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300 shadow-md"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition-all duration-300 shadow-md"
               >
                 Contact Me
               </Link>

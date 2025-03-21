@@ -3,7 +3,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-slate-800 to-slate-900 text-white">
+    <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-12">
         {/* Top Section with Logo, Navigation, and Social Media */}
@@ -11,10 +11,10 @@ function Footer() {
           {/* Logo and Tagline */}
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="h-10 w-10 bg-teal-500 rounded-full flex items-center justify-center">
+              <div className="h-10 w-10 bg-orange-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-xl">JS</span>
               </div>
-              <span className="text-xl font-bold text-teal-400">
+              <span className="text-xl font-bold text-orange-400">
                 DevPortfolio
               </span>
             </div>
@@ -26,71 +26,71 @@ function Footer() {
 
           {/* Navigation Links */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-semibold text-lg mb-4 text-teal-400">
+            <h3 className="font-semibold text-lg mb-4 text-orange-400">
               Navigation
             </h3>
             <ul className="flex flex-col space-y-2">
               <li>
                 <Link
-                  activeClass="text-teal-400"
+                  activeClass="text-orange-400"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
                   to="heroSection"
-                  className="text-gray-300 hover:text-teal-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
                 >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-teal-400"
+                  activeClass="text-orange-400"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
                   to="MyPortfolio"
-                  className="text-gray-300 hover:text-teal-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
                 >
                   Portfolio
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-teal-400"
+                  activeClass="text-orange-400"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
                   to="AboutMe"
-                  className="text-gray-300 hover:text-teal-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
                 >
                   About Me
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-teal-400"
+                  activeClass="text-orange-400"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
                   to="Contact"
-                  className="text-gray-300 hover:text-teal-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
                 >
                   Contact
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-teal-400"
+                  activeClass="text-orange-400"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
                   to="testimonial"
-                  className="text-gray-300 hover:text-teal-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
                 >
                   Testimonials
                 </Link>
@@ -100,7 +100,7 @@ function Footer() {
 
           {/* Social Media Icons */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-semibold text-lg mb-4 text-teal-400">
+            <h3 className="font-semibold text-lg mb-4 text-orange-400">
               Connect
             </h3>
             <div className="flex space-x-4">
@@ -108,7 +108,7 @@ function Footer() {
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-700 hover:bg-teal-500 p-3 rounded-full transition-colors duration-300"
+                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
                 aria-label="Facebook"
               >
                 <svg
@@ -129,7 +129,7 @@ function Footer() {
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-700 hover:bg-teal-500 p-3 rounded-full transition-colors duration-300"
+                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <svg
@@ -152,7 +152,7 @@ function Footer() {
                 href="https://www.twitter.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-700 hover:bg-teal-500 p-3 rounded-full transition-colors duration-300"
+                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
                 aria-label="Twitter"
               >
                 <svg
@@ -173,7 +173,7 @@ function Footer() {
                 href="https://www.linkedin.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-700 hover:bg-teal-500 p-3 rounded-full transition-colors duration-300"
+                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -196,7 +196,7 @@ function Footer() {
                 href="https://github.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-slate-700 hover:bg-teal-500 p-3 rounded-full transition-colors duration-300"
+                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
                 aria-label="GitHub"
               >
                 <svg
@@ -222,7 +222,7 @@ function Footer() {
         {/* Middle Section with Newsletter Signup */}
         <div className="border-t border-gray-700 pt-8 pb-12">
           <div className="max-w-xl mx-auto text-center">
-            <h3 className="font-semibold text-xl mb-3 text-teal-400">
+            <h3 className="font-semibold text-xl mb-3 text-orange-400">
               Subscribe to my newsletter
             </h3>
             <p className="text-gray-400 mb-6">
@@ -232,12 +232,12 @@ function Footer() {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="px-4 py-3 rounded-md flex-grow bg-slate-700 text-white border border-slate-600 focus:outline-none focus:border-teal-400"
+                className="px-4 py-3 rounded-md flex-grow bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-orange-400"
                 required
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-md transition-colors duration-300"
+                className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-md transition-colors duration-300"
               >
                 Subscribe
               </button>
@@ -253,19 +253,19 @@ function Footer() {
           <div className="flex space-x-6">
             <a
               href="/privacy"
-              className="text-gray-400 hover:text-teal-400 text-sm transition-colors duration-300"
+              className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"
             >
               Privacy Policy
             </a>
             <a
               href="/terms"
-              className="text-gray-400 hover:text-teal-400 text-sm transition-colors duration-300"
+              className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"
             >
               Terms of Service
             </a>
             <a
               href="/cookies"
-              className="text-gray-400 hover:text-teal-400 text-sm transition-colors duration-300"
+              className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"
             >
               Cookie Policy
             </a>
