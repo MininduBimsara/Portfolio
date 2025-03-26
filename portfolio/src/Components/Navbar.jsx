@@ -4,6 +4,7 @@ import { Link } from "react-scroll";
 function Navbar() {
   const [navActive, setNavActive] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const toggleNav = () => {
     setNavActive(!navActive);
@@ -16,38 +17,53 @@ function Navbar() {
   // Handle navbar background change on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 70);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on resize
+  // Observe sections and update activeSection
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        closeMenu();
-      }
-    };
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    sections.forEach((section) => observer.observe(section));
+
+    return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
+
+  // Determine navbar background color based on active section
+  const getNavbarBackground = () => {
+    switch (activeSection) {
+      case "heroSection":
+        return "bg-blue-500";
+      case "MyPortfolio":
+        return "bg-green-500";
+      case "AboutMe":
+        return "bg-purple-500";
+      case "testimonials":
+        return "bg-red-500";
+      case "Contact":
+        return "bg-orange-500";
+      default:
+        return scrolled ? "bg-gray-800 shadow-lg" : "bg-transparent";
+    }
+  };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-gray-100 shadow-lg py-3" : "bg-transparent py-5"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 ${getNavbarBackground()}`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
@@ -63,7 +79,7 @@ function Navbar() {
         >
           <span
             className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              navActive ? "transform rotate-45 translate-y-2" : ""
+              navActive ? "rotate-45 translate-y-2" : ""
             }`}
           ></span>
           <span
@@ -73,7 +89,7 @@ function Navbar() {
           ></span>
           <span
             className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              navActive ? "transform -rotate-45 -translate-y-2" : ""
+              navActive ? "-rotate-45 -translate-y-2" : ""
             }`}
           ></span>
         </button>
@@ -145,87 +161,83 @@ function Navbar() {
             Contact Me
           </Link>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`lg:hidden fixed inset-0 z-40 bg-gray-50 transform ${
-          navActive ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out pt-20`}
-      >
-        <div className="container mx-auto px-6">
-          <ul className="flex flex-col space-y-8 py-8">
-            <li>
-              <Link
-                onClick={closeMenu}
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="heroSection"
-                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={closeMenu}
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="MyPortfolio"
-                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
-              >
-                Portfolio
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={closeMenu}
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="AboutMe"
-                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
-              >
-                About Me
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={closeMenu}
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="testimonial"
-                className="text-xl text-gray-800 hover:text-orange-500 transition-colors duration-300"
-              >
-                Testimonials
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={closeMenu}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="Contact"
-                className="inline-block px-6 py-3 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition-all duration-300 shadow-md"
-              >
-                Contact Me
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {/* Navigation Links - Mobile */}
+        {navActive && (
+          <div className="absolute top-16 left-0 right-0 bg-white shadow-lg lg:hidden">
+            <ul className="flex flex-col items-center space-y-4 py-4">
+              <li>
+                <Link
+                  activeClass="text-orange-500 font-medium"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  to="heroSection"
+                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                  onClick={closeMenu}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  activeClass="text-orange-500 font-medium"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  to="MyPortfolio"
+                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                  onClick={closeMenu}
+                >
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link
+                  activeClass="text-orange-500 font-medium"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  to="AboutMe"
+                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                  onClick={closeMenu}
+                >
+                  About Me
+                </Link>
+              </li>
+              <li>
+                <Link
+                  activeClass="text-orange-500 font-medium"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  to="testimonials"
+                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
+                  onClick={closeMenu}
+                >
+                  Testimonials
+                </Link>
+              </li>
+              <li>
+                <Link
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  to="Contact"
+                  className="px-6 py-2.5 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition-all duration-300 shadow-md"
+                  onClick={closeMenu}
+                >
+                  Contact Me
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </nav>
   );
