@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section
       id="heroSection"
-      className="bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen flex items-center"
+      className="mt-5 bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen flex items-center"
     >
       <div className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
