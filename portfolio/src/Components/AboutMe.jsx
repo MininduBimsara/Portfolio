@@ -16,17 +16,37 @@ export default function AboutMe() {
     >
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Image Section */}
+          {/* Image Section with Floating Animation */}
           <div className="w-full lg:w-1/2 relative hidden lg:block">
             <div className="absolute -top-8 -left-8 w-72 h-72 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
             <div className="absolute -bottom-8 -right-8 w-72 h-72 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 backdrop-blur-sm">
+            <div
+              className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 backdrop-blur-sm animate-float"
+              style={{
+                animation: "float 6s ease-in-out infinite",
+              }}
+            >
               <img
                 src="/img/about.png"
                 alt="Profile"
                 className="w-full h-auto object-cover"
               />
             </div>
+
+            {/* Add the animation keyframes via inline style */}
+            <style jsx>{`
+              @keyframes float {
+                0% {
+                  transform: translateY(0px);
+                }
+                50% {
+                  transform: translateY(-20px);
+                }
+                100% {
+                  transform: translateY(0px);
+                }
+              }
+            `}</style>
           </div>
 
           {/* Text Section */}
@@ -36,7 +56,7 @@ export default function AboutMe() {
                 ABOUT ME
               </span>
               <h2 className="text-4xl md:text-5xl font-light text-white tracking-tight">
-                Passionate About Building
+                Passionate About Building{" "}
                 <span className="font-bold bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent">
                   Scalable Solutions
                 </span>
