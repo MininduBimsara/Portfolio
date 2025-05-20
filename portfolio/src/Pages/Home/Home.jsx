@@ -51,9 +51,9 @@ export default function Home() {
             <MyPortfolio />
           </div>
 
-          <div className="">
+          {/* <div className="">
             <Testimonial />
-          </div>
+          </div> */}
 
           <div className="">
             <ContactMe />
