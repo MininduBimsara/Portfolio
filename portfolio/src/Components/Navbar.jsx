@@ -2,17 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 
 function Navbar() {
-  const [navActive, setNavActive] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-
-  const toggleNav = () => {
-    setNavActive(!navActive);
-  };
-
-  const closeMenu = () => {
-    setNavActive(false);
-  };
 
   // Handle navbar background change on scroll
   useEffect(() => {
@@ -43,201 +35,140 @@ function Navbar() {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
-  // Determine navbar background color based on active section
-  const getNavbarBackground = () => {
-    switch (activeSection) {
-      case "heroSection":
-        return "bg-blue-500";
-      case "MyPortfolio":
-        return "bg-green-500";
-      case "AboutMe":
-        return "bg-purple-500";
-      case "testimonials":
-        return "bg-red-500";
-      case "Contact":
-        return "bg-orange-500";
-      default:
-        return scrolled ? "bg-gray-800 shadow-lg" : "bg-transparent";
-    }
-  };
+  // Navbar background style
+  const navBackground = isExpanded ? "bg-amber-700" : "bg-transparent";
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 ${getNavbarBackground()}`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center">
-          <img src="/img/logo.svg" alt="Logo" className="h-8" />
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 rounded-md focus:outline-none"
-          onClick={toggleNav}
-          aria-label="Toggle menu"
+      <div className="container mx-auto px-4">
+        <div
+          className={`${
+            isExpanded
+              ? "bg-amber-700 py-4 rounded-bl-3xl rounded-br-3xl"
+              : "bg-transparent py-3"
+          } transition-all duration-500`}
         >
-          <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              navActive ? "rotate-45 translate-y-2" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              navActive ? "opacity-0" : "opacity-100"
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              navActive ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          ></span>
-        </button>
-
-        {/* Navigation Links - Desktop */}
-        <div className="hidden lg:flex items-center space-x-10">
-          <ul className="flex space-x-10">
-            <li>
-              <Link
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="heroSection"
-                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="MyPortfolio"
-                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-              >
-                Portfolio
-              </Link>
-            </li>
-            <li>
-              <Link
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="AboutMe"
-                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-              >
-                About Me
-              </Link>
-            </li>
-            <li>
-              <Link
-                activeClass="text-orange-500 font-medium"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                to="testimonials"
-                className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-              >
-                Testimonials
-              </Link>
-            </li>
-          </ul>
-          <Link
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-            to="Contact"
-            className="px-6 py-2.5 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition-all duration-300 shadow-md"
-          >
-            Contact Me
-          </Link>
-        </div>
-
-        {/* Navigation Links - Mobile */}
-        {navActive && (
-          <div className="absolute top-16 left-0 right-0 bg-white shadow-lg lg:hidden">
-            <ul className="flex flex-col items-center space-y-4 py-4">
-              <li>
-                <Link
-                  activeClass="text-orange-500 font-medium"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  to="heroSection"
-                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-                  onClick={closeMenu}
-                >
+          <div className="flex items-center justify-between">
+            {/* Logo/Brand Area (Always visible) */}
+            <div className="flex items-center ml-4">
+              <div
+                className={`h-3 w-3 bg-orange-500 rounded-full mr-3 ${
+                  !isExpanded && "mt-1"
+                }`}
+              ></div>
+              {isExpanded && (
+                <span className="text-white font-medium transition-opacity duration-300">
                   Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  activeClass="text-orange-500 font-medium"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  to="MyPortfolio"
-                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-                  onClick={closeMenu}
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  activeClass="text-orange-500 font-medium"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  to="AboutMe"
-                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-                  onClick={closeMenu}
-                >
-                  About Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  activeClass="text-orange-500 font-medium"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  to="testimonials"
-                  className="text-indigo-700 hover:text-orange-500 transition-colors duration-300 cursor-pointer"
-                  onClick={closeMenu}
-                >
-                  Testimonials
-                </Link>
-              </li>
-              <li>
-                <Link
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  to="Contact"
-                  className="px-6 py-2.5 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition-all duration-300 shadow-md"
-                  onClick={closeMenu}
-                >
-                  Contact Me
-                </Link>
-              </li>
-            </ul>
+                </span>
+              )}
+            </div>
+
+            {/* Centered Menu Button (Visible when collapsed) */}
+            {!isExpanded && (
+              <div className="absolute left-1/2 transform -translate-x-1/2">
+                <div className="bg-orange-500 text-white font-bold px-8 py-1.5 rounded-full shadow-md tracking-wider text-sm">
+                  MENU
+                </div>
+              </div>
+            )}
+
+            {/* Expanded Menu Items (Visible when expanded) */}
+            {isExpanded && (
+              <div className="flex items-center justify-center flex-grow">
+                <ul className="flex space-x-12">
+                  <li>
+                    <Link
+                      activeClass="text-orange-300"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      to="heroSection"
+                      className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                        activeSection === "heroSection" ? "font-medium" : ""
+                      }`}
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      activeClass="text-orange-300"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      to="MyPortfolio"
+                      className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                        activeSection === "MyPortfolio" ? "font-medium" : ""
+                      }`}
+                    >
+                      Portfolios
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      activeClass="text-orange-300"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      to="AboutMe"
+                      className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                        activeSection === "AboutMe" ? "font-medium" : ""
+                      }`}
+                    >
+                      Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      activeClass="text-orange-300"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      to="Contact"
+                      className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                        activeSection === "Contact" ? "font-medium" : ""
+                      }`}
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* Hamburger Menu (Right-aligned) */}
+            <div className="block mr-4">
+              <button
+                className="flex flex-col justify-center items-center w-6 h-6 space-y-1.5"
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={`block w-6 h-0.5 ${
+                    isExpanded ? "bg-white" : "bg-gray-800"
+                  }`}
+                ></span>
+                <span
+                  className={`block w-6 h-0.5 ${
+                    isExpanded ? "bg-white" : "bg-gray-800"
+                  }`}
+                ></span>
+                <span
+                  className={`block w-6 h-0.5 ${
+                    isExpanded ? "bg-white" : "bg-gray-800"
+                  }`}
+                ></span>
+              </button>
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

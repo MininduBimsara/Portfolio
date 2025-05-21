@@ -1,276 +1,426 @@
 import { Link } from "react-scroll";
-import React from "react";
+import { useState } from "react";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+      setEmail("");
+      // Here you would normally send this to an API
+      setTimeout(() => {
+        setSubscribed(false);
+      }, 3000);
+    }
+  };
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-6 py-12">
-        {/* Top Section with Logo, Navigation, and Social Media */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Logo and Tagline */}
-          <div className="flex flex-col items-center md:items-start space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-10 w-10 bg-orange-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">JS</span>
+    <footer className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-16">
+      {/* Wave decoration at the top */}
+      <div className="absolute top-0 left-0 right-0">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          className="w-full h-auto"
+        >
+          <path
+            fill="#ffffff"
+            fillOpacity="1"
+            d="M0,64L60,64C120,64,240,64,360,53.3C480,43,600,21,720,21.3C840,21,960,43,1080,58.7C1200,75,1320,85,1380,90.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+          ></path>
+        </svg>
+      </div>
+
+      {/* Orbit decoration elements */}
+      <div className="absolute opacity-10 top-40 -left-20 w-64 h-64 border border-orange-300 rounded-full"></div>
+      <div className="absolute opacity-5 bottom-20 right-10 w-96 h-96 border-2 border-orange-400 rounded-full"></div>
+      <div className="absolute opacity-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 border border-white rounded-full"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Main Grid Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-16">
+          {/* Brand & Vision Column */}
+          <div className="lg:col-span-4 flex flex-col">
+            <div className="mb-6 flex items-center">
+              <div className="h-12 w-12 bg-gradient-to-tr from-orange-400 to-red-500 rounded-lg flex items-center justify-center transform rotate-12 shadow-lg">
+                <span className="text-white font-bold text-xl transform -rotate-12">
+                  JS
+                </span>
               </div>
-              <span className="text-xl font-bold text-orange-400">
-                DevPortfolio
-              </span>
+              <div className="ml-4">
+                <div className="text-2xl font-bold">
+                  <span className="text-orange-400">Dev</span>
+                  <span className="text-white">Portfolio</span>
+                </div>
+                <div className="text-xs text-gray-400 mt-1">
+                  Crafting Digital Experiences
+                </div>
+              </div>
             </div>
-            <p className="text-gray-400 text-sm max-w-xs text-center md:text-left">
-              Building digital experiences that make a difference through
-              creative coding and thoughtful design.
+
+            <p className="text-gray-300 mb-6 max-w-sm">
+              I transform ideas into exceptional digital experiences through
+              creative coding, innovative design, and a passion for building
+              meaningful solutions.
             </p>
+
+            {/* Newsletter Subscription */}
+            {/* <div className="mt-auto">
+              <h3 className="text-orange-400 font-medium mb-3">Stay Updated</h3>
+              <form onSubmit={handleSubscribe} className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full bg-gray-800 bg-opacity-50 border border-gray-700 rounded-full py-3 px-5 pr-20 text-sm focus:outline-none focus:border-orange-400 transition-colors"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="absolute right-1 top-1 bg-orange-500 hover:bg-orange-600 text-white rounded-full px-4 py-2 text-sm transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+              {subscribed && (
+                <div className="text-green-400 text-sm mt-2">
+                  Thanks for subscribing!
+                </div>
+              )}
+            </div> */}
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-semibold text-lg mb-4 text-orange-400">
-              Navigation
+          {/* Navigation Columns */}
+          <div className="lg:col-span-2 flex flex-col">
+            <h3 className="text-lg font-semibold text-orange-400 mb-4">
+              Site Map
             </h3>
-            <ul className="flex flex-col space-y-2">
+            <ul className="space-y-2">
               <li>
                 <Link
-                  activeClass="text-orange-400"
+                  to="heroSection"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  to="heroSection"
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center"
                 >
+                  <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-orange-400"
+                  to="MyPortfolio"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  to="MyPortfolio"
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center"
                 >
+                  <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
                   Portfolio
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-orange-400"
+                  to="AboutMe"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  to="AboutMe"
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center"
                 >
-                  About Me
+                  <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
+                  Services
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-orange-400"
+                  to="Contact"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  to="Contact"
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center"
                 >
+                  <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
                   Contact
                 </Link>
               </li>
               <li>
                 <Link
-                  activeClass="text-orange-400"
+                  to="testimonial"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
-                  to="testimonial"
-                  className="text-gray-300 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center"
                 >
+                  <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
                   Testimonials
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Social Media Icons */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-semibold text-lg mb-4 text-orange-400">
-              Connect
+          {/* Services Column */}
+          <div className="lg:col-span-2 flex flex-col">
+            <h3 className="text-lg font-semibold text-orange-400 mb-4">
+              Services
             </h3>
-            <div className="flex space-x-4">
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
-                aria-label="Facebook"
-              >
+            <ul className="space-y-2">
+              <li className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center">
+                <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
+                Web Development
+              </li>
+              <li className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center">
+                <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
+                UI/UX Design
+              </li>
+              <li className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center">
+                <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
+                Mobile Apps
+              </li>
+              <li className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center">
+                <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
+                E-Commerce
+              </li>
+              <li className="text-gray-300 hover:text-orange-400 transition-colors cursor-pointer flex items-center">
+                <span className="inline-block w-1 h-1 bg-orange-400 mr-2 rounded-full"></span>
+                SEO Optimization
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Column */}
+          <div className="lg:col-span-4 flex flex-col">
+            <h3 className="text-lg font-semibold text-orange-400 mb-4">
+              Get In Touch
+            </h3>
+
+            <div className="mb-4 flex items-center">
+              <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center mr-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 33 33"
+                  className="h-5 w-5 text-orange-400"
                   fill="none"
-                  className="text-white"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
                   <path
-                    d="M22.6667 8.65479H18.6667C17.9303 8.65479 17.3333 9.25175 17.3333 9.98812V13.9881H22.6667C22.8183 13.9848 22.9621 14.0553 23.0523 14.1773C23.1424 14.2993 23.1677 14.4575 23.12 14.6015L22.1333 17.5348C22.0424 17.804 21.7908 17.986 21.5067 17.9881H17.3333V27.9881C17.3333 28.3563 17.0348 28.6548 16.6667 28.6548H13.3333C12.9651 28.6548 12.6667 28.3563 12.6667 27.9881V17.9881H10.6667C10.2985 17.9881 10 17.6896 10 17.3215V14.6548C10 14.2867 10.2985 13.9881 10.6667 13.9881H12.6667V9.98812C12.6667 7.0426 15.0545 4.65479 18 4.65479H22.6667C23.0348 4.65479 23.3333 4.95327 23.3333 5.32145V7.98812C23.3333 8.35631 23.0348 8.65479 22.6667 8.65479Z"
-                    fill="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-              </a>
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
-                aria-label="Instagram"
-              >
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs">Email</p>
+                <a
+                  href="mailto:jane@devportfolio.com"
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  jane@devportfolio.com
+                </a>
+              </div>
+            </div>
+
+            <div className="mb-4 flex items-center">
+              <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center mr-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 33 33"
+                  className="h-5 w-5 text-orange-400"
                   fill="none"
-                  className="text-white"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
                   <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M22.0001 4.65479H11.3334C7.65152 4.65479 4.66675 7.63956 4.66675 11.3215V21.9881C4.66675 25.67 7.65152 28.6548 11.3334 28.6548H22.0001C25.6819 28.6548 28.6667 25.67 28.6667 21.9881V11.3215C28.6667 7.63956 25.6819 4.65479 22.0001 4.65479ZM26.3334 21.9881C26.3261 24.3783 24.3902 26.3141 22.0001 26.3215H11.3334C8.94321 26.3141 7.0074 24.3783 7.00008 21.9881V11.3215C7.0074 8.93125 8.94321 6.99544 11.3334 6.98812H22.0001C24.3902 6.99544 26.3261 8.93125 26.3334 11.3215V21.9881ZM23.0001 11.6548C23.7365 11.6548 24.3334 11.0578 24.3334 10.3215C24.3334 9.58508 23.7365 8.98812 23.0001 8.98812C22.2637 8.98812 21.6667 9.58508 21.6667 10.3215C21.6667 11.0578 22.2637 11.6548 23.0001 11.6548ZM16.6667 10.6548C13.353 10.6548 10.6667 13.3411 10.6667 16.6548C10.6667 19.9685 13.353 22.6548 16.6667 22.6548C19.9805 22.6548 22.6667 19.9685 22.6667 16.6548C22.6703 15.0624 22.0393 13.5342 20.9133 12.4082C19.7873 11.2822 18.2591 10.6512 16.6667 10.6548ZM13.0001 16.6548C13.0001 18.6799 14.6417 20.3215 16.6667 20.3215C18.6918 20.3215 20.3334 18.6799 20.3334 16.6548C20.3334 14.6297 18.6918 12.9881 16.6667 12.9881C14.6417 12.9881 13.0001 14.6297 13.0001 16.6548Z"
-                    fill="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-              </a>
-              <a
-                href="https://www.twitter.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
-                aria-label="Twitter"
-              >
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs">Phone</p>
+                <a
+                  href="tel:+123456789"
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  +1 (234) 567-890
+                </a>
+              </div>
+            </div>
+
+            <div className="mb-6 flex items-center">
+              <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center mr-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 33 33"
+                  className="h-5 w-5 text-orange-400"
                   fill="none"
-                  className="text-white"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
                   <path
-                    d="M28.6304 9.61132C28.0112 10.4373 27.2627 11.1579 26.4137 11.7451C26.4137 11.9609 26.4137 12.1767 26.4137 12.4045C26.4205 16.3229 24.8553 20.0803 22.0691 22.8341C19.2827 25.588 15.5083 27.108 11.5921 27.0533C9.32799 27.0609 7.0929 26.544 5.0619 25.5429C4.95238 25.4951 4.88175 25.3868 4.88216 25.2672V25.1353C4.88216 24.9632 5.02164 24.8237 5.1937 24.8237C7.41923 24.7503 9.56536 23.9787 11.3285 22.618C9.31404 22.5773 7.50159 21.384 6.66747 19.5491C6.62535 19.4489 6.63846 19.3339 6.7021 19.2457C6.76572 19.1576 6.87067 19.1091 6.979 19.1176C7.59123 19.1791 8.20958 19.1221 8.80027 18.9497C6.57652 18.4881 4.90562 16.642 4.66648 14.3824C4.65799 14.274 4.70656 14.1691 4.79467 14.1053C4.88276 14.0417 4.99766 14.0285 5.09784 14.0708C5.69459 14.3341 6.33879 14.4728 6.99099 14.4783C5.04246 13.1994 4.20082 10.7669 4.94207 8.55641C5.01859 8.34163 5.20242 8.18295 5.426 8.13871C5.64958 8.09445 5.87995 8.17116 6.03243 8.34064C8.66186 11.1391 12.2747 12.8067 16.1092 12.9918C16.0111 12.5999 15.9628 12.1971 15.9655 11.7931C16.0013 9.67441 17.3123 7.78707 19.2845 7.01461C21.2567 6.24217 23.4999 6.73749 24.964 8.26871C25.9619 8.07859 26.9267 7.74339 27.8276 7.27373C27.8936 7.23253 27.9773 7.23253 28.0433 7.27373C28.0845 7.33976 28.0845 7.42348 28.0433 7.48951C27.6069 8.48881 26.8697 9.32695 25.9345 9.88704C26.7535 9.79207 27.558 9.59888 28.3309 9.31164C28.396 9.26735 28.4815 9.26735 28.5465 9.31164C28.6011 9.33657 28.6419 9.38427 28.658 9.44201C28.6741 9.49976 28.664 9.56169 28.6304 9.61132Z"
-                    fill="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs">Location</p>
+                <span className="text-gray-300">San Francisco, CA</span>
+              </div>
+            </div>
+
+            {/* Social Media Icons - Interactive with hovering effects */}
+            <div className="flex space-x-3 mt-auto">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="group"
+                aria-label="GitHub"
+              >
+                <div className="bg-gray-800 group-hover:bg-orange-500 p-3 rounded-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    className="text-gray-300 group-hover:text-white transition-colors"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"
+                    />
+                  </svg>
+                </div>
               </a>
               <a
                 href="https://www.linkedin.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
+                className="group"
                 aria-label="LinkedIn"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 33 33"
-                  fill="none"
-                  className="text-white"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M11.3334 24.6548C11.7016 24.6548 12.0001 24.3563 12.0001 23.9881V14.6548C12.0001 14.2867 11.7016 13.9881 11.3334 13.9881H8.66675C8.29856 13.9881 8.00008 14.2867 8.00008 14.6548V23.9881C8.00008 24.3563 8.29856 24.6548 8.66675 24.6548H11.3334ZM10.0001 12.6548C8.89551 12.6548 8.00008 11.7594 8.00008 10.6548C8.00008 9.55021 8.89551 8.65479 10.0001 8.65479C11.1047 8.65479 12.0001 9.55021 12.0001 10.6548C12.0001 11.7594 11.1047 12.6548 10.0001 12.6548ZM24.0001 24.6548C24.3682 24.6548 24.6667 24.3563 24.6667 23.9881V19.2322C24.7101 17.1423 23.1435 15.4095 21.0568 15.2971C19.4819 15.2322 18.0168 16.0037 17.3334 17.3881V14.6548C17.3334 14.2867 17.0349 13.9881 16.6667 13.9881H14.0001C13.6319 13.9881 13.3334 14.2867 13.3334 14.6548V23.9881C13.3334 24.3563 13.6319 24.6548 14.0001 24.6548H16.6667C17.0349 24.6548 17.3334 24.3563 17.3334 23.9881V19.3215C17.3334 18.2169 18.2289 17.3215 19.3334 17.3215C20.4379 17.3215 21.3334 18.2169 21.3334 19.3215V23.9881C21.3334 24.3563 21.6319 24.6548 22.0001 24.6548H24.0001Z"
-                    fill="currentColor"
-                  />
-                </svg>
+                <div className="bg-gray-800 group-hover:bg-orange-500 p-3 rounded-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    className="text-gray-300 group-hover:text-white transition-colors"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+                    />
+                  </svg>
+                </div>
               </a>
               <a
-                href="https://github.com/"
+                href="https://www.twitter.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-gray-700 hover:bg-orange-500 p-3 rounded-full transition-colors duration-300"
-                aria-label="GitHub"
+                className="group"
+                aria-label="Twitter"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 33 33"
-                  fill="none"
-                  className="text-white"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M16.3334 4.65479C10.1084 4.65479 5.00008 9.76312 5.00008 15.9881C5.00008 20.9715 8.33341 25.1548 13.0001 26.8048C13.5834 26.9048 13.7501 26.5715 13.7501 26.2881C13.7501 26.0381 13.7501 25.2881 13.7501 24.3215C10.3334 24.9881 9.66675 22.7881 9.66675 22.7881C9.16675 21.6215 8.45008 21.2881 8.45008 21.2881C7.47508 20.6215 8.53341 20.6215 8.53341 20.6215C9.58341 20.7048 10.1667 21.7881 10.1667 21.7881C11.1667 23.3215 12.7501 22.8048 13.7501 22.5548C13.8334 21.8881 14.1667 21.4048 14.5001 21.1215C11.8334 20.8381 9.08341 19.8881 9.08341 15.3215C9.08341 14.0715 9.50008 13.0715 10.1667 12.2381C10.0834 11.9881 9.66675 10.8215 10.2501 9.05479C10.2501 9.05479 11.2501 8.80479 13.7501 10.3048C14.5001 10.0548 15.4167 9.96312 16.3334 9.96312C17.2501 9.96312 18.1667 10.0715 18.9167 10.3048C21.4167 8.80479 22.4167 9.05479 22.4167 9.05479C23.0001 10.8215 22.5834 11.9881 22.5001 12.2381C23.1667 13.0715 23.5834 14.0715 23.5834 15.3215C23.5834 19.8881 20.8334 20.8215 18.1667 21.1048C18.5834 21.4715 18.9167 22.2215 18.9167 23.3048C18.9167 24.8881 18.9167 25.9048 18.9167 26.2881C18.9167 26.5715 19.0834 26.9048 19.6667 26.8048C24.3334 25.1548 27.6667 20.9715 27.6667 15.9881C27.6667 9.76312 22.5584 4.65479 16.3334 4.65479Z"
-                    fill="currentColor"
-                  />
-                </svg>
+                <div className="bg-gray-800 group-hover:bg-orange-500 p-3 rounded-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    className="text-gray-300 group-hover:text-white transition-colors"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+                    />
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.dribbble.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="group"
+                aria-label="Dribbble"
+              >
+                <div className="bg-gray-800 group-hover:bg-orange-500 p-3 rounded-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    className="text-gray-300 group-hover:text-white transition-colors"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.23 6.53c1.12 1.36 1.8 3.08 1.86 4.94-1.19-.24-2.28-.35-3.29-.35-.56 0-1.11.04-1.65.11-.54-1.4-1.17-2.72-1.88-3.96 1.96-.5 3.5-1.04 4.96-.74zM15.98 7.54c-1.3-.28-2.71.18-4.51.63.74 1.17 1.33 2.43 1.79 3.76-1.23.65-2.15 1.54-2.74 2.61-1-.6-2.03-1.06-3.12-1.35.22-2.47 1.36-4.97 3.14-6.72 1.65.66 3.21 1.75 5.44 1.07zM6.34 14.6c1.21.3 2.36.8 3.43 1.5-.21.81-.29 1.65-.22 2.49-1.12.2-2.25.31-3.43.31-1.54 0-3.04-.23-4.45-.68.54-2.63 2.27-4.67 4.67-5.62zM4.45 17.55c1.24.39 2.57.6 3.93.6 1.06 0 2.1-.11 3.09-.34-.07-1.04.14-2.07.65-3.01.43-.8 1.08-1.4 1.85-1.85-.4 1.3-.48 2.56-.21 3.91-.8.93-1.11 2.11-.89 3.28-2.49-.47-4.67-1.9-6.25-3.92-.41-.66-.74-1.37-.97-2.11.51 1.09 1.14 2.1 1.9 3.01-1.1-.25-2.15-.73-3.1-1.57z"
+                    />
+                  </svg>
+                </div>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Middle Section with Newsletter Signup */}
-        <div className="border-t border-gray-700 pt-8 pb-12">
-          <div className="max-w-xl mx-auto text-center">
-            <h3 className="font-semibold text-xl mb-3 text-orange-400">
-              Subscribe to my newsletter
-            </h3>
-            <p className="text-gray-400 mb-6">
-              Stay updated with my latest projects and tech insights.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="px-4 py-3 rounded-md flex-grow bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-orange-400"
-                required
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-md transition-colors duration-300"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
+        {/* Copyright Bar & Bottom Links */}
+        <div className="border-t border-gray-800 pt-8 pb-12">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-400 text-sm mb-4 md:mb-0">
+              © {currentYear} DevPortfolio. All rights reserved.
+            </div>
 
-        {/* Bottom Section with Copyright and Legal Links */}
-        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Jane Smith. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <a
-              href="/privacy"
-              className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="/terms"
-              className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="/cookies"
-              className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"
-            >
-              Cookie Policy
-            </a>
+            <div className="flex flex-wrap justify-center space-x-6">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-orange-400 text-sm transition-colors mb-2 md:mb-0"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-orange-400 text-sm transition-colors mb-2 md:mb-0"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-orange-400 text-sm transition-colors mb-2 md:mb-0"
+              >
+                Cookie Policy
+              </a>
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Technical skills decoration in the background */}
+      <div className="absolute bottom-0 right-0 opacity-5 z-0 text-6xl font-bold text-white transform rotate-90 translate-x-1/3 translate-y-1/4">
+        REACT
+      </div>
+      <div className="absolute bottom-0 left-0 opacity-5 z-0 text-6xl font-bold text-white transform -rotate-90 -translate-x-1/3 translate-y-1/4">
+        JS
       </div>
     </footer>
   );
