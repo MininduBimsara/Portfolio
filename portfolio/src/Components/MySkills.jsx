@@ -382,8 +382,13 @@ const SkillsShowcase = () => {
   return (
     <section
       id="skills-section"
-      className="py-16 bg-gray-100 dark:bg-gray-800 relative overflow-hidden w-full"
+      className="py-16 relative overflow-hidden w-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
     >
+      {/* Background dot texture pattern - matching hero section */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
+      </div>
+
       <div className="container mx-auto px-4 md:px-12 relative z-10">
         {/* Improved Heading at the top of the section */}
         <div
