@@ -79,14 +79,18 @@ export default function MyPortfolio() {
   return (
     <section
       id="MyPortfolio"
-      className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 text-white relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden"
     >
-      {/* Decorative background elements */}
+      {/* Background dot texture pattern - Same as hero section */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
+      </div>
+
       <div className="py-24 relative">
-        <div className="absolute inset-0 overflow-hidden z-0">
+        {/* <div className="absolute inset-0 overflow-hidden z-0">
           <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-orange-500/20 blur-3xl"></div>
           <div className="absolute top-40 -left-20 w-72 h-72 rounded-full bg-orange-500/20 blur-3xl"></div>
-        </div>
+        </div> */}
 
         {/* Header Section */}
         <div className="w-full px-4">

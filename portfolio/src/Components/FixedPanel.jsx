@@ -2,13 +2,18 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
   return (
     // Fixed Panel
     <div
-      className={`fixed -left-full md:static md:left-0 md:w-2/5 lg:w-1/3 md:h-screen md:sticky top-0 bg-gradient-to-b from-gray-700 to-gray-800 p-6 md:p-12 md:flex md:flex-col md:justify-center shadow-lg ${
+      className={`fixed -left-full md:static md:left-0 md:w-2/5 lg:w-1/3 md:h-screen md:sticky top-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-6 md:p-12 md:flex md:flex-col md:justify-center shadow-lg relative ${
         scrollPosition <= heroSectionHeight
           ? "md:opacity-0"
           : "md:opacity-100 transition-opacity duration-500"
       }`}
     >
-      <div className="max-w-md mx-auto">
+      {/* Background dot texture pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
+      </div>
+
+      <div className="max-w-md mx-auto relative z-10">
         {/* Profile Image with enhanced styling */}
         <div className="relative w-40 h-40 mx-auto mb-8">
           <div className="absolute inset-0 rounded-full bg-orange-400 transform -rotate-6 shadow-md"></div>
@@ -22,7 +27,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
         </div>
 
         {/* Name and Title with refined typography */}
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2 font-sans">
+        <h2 className="text-3xl font-bold text-center text-white mb-2 font-sans">
           Your Name
         </h2>
         <p className="text-orange-500 text-center font-medium mb-6 tracking-wide">
@@ -30,7 +35,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
         </p>
 
         {/* Brief Description with better readability */}
-        <p className="text-gray-600 text-center mb-8 leading-relaxed">
+        <p className="text-gray-300 text-center mb-8 leading-relaxed">
           I craft responsive and performant web applications with modern
           technologies and a focus on user experience and clean code.
         </p>
@@ -40,7 +45,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg">
             Contact Me
           </button>
-          <button className="bg-white hover:bg-gray-100 text-orange-500 border-2 border-orange-500 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
+          <button className="bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-400 border-opacity-30 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
             Download CV
           </button>
         </div>
@@ -49,7 +54,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
         <div className="flex justify-center gap-4 mt-8">
           <a
             href="#"
-            className="text-gray-600 hover:text-orange-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -62,7 +67,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           </a>
           <a
             href="#"
-            className="text-gray-600 hover:text-orange-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -79,7 +84,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           </a>
           <a
             href="#"
-            className="text-gray-600 hover:text-orange-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -96,7 +101,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           </a>
           <a
             href="#"
-            className="text-gray-600 hover:text-orange-500 transition-colors duration-300"
+            className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
           >
             <svg
               className="w-6 h-6"

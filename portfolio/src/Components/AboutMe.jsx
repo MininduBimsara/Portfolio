@@ -12,9 +12,14 @@ export default function AboutMe() {
   return (
     <section
       id="AboutMe"
-      className="py-24 bg-gradient-to-b from-gray-900 to-gray-950"
+      className="py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden"
     >
-      <div className="container mx-auto px-6">
+      {/* Background dot texture pattern - same as hero section */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Image Section with Floating Animation */}
           <div className="w-full lg:w-1/2 relative hidden lg:block">

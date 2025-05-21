@@ -57,16 +57,21 @@ export default function ContactMe() {
   return (
     <section
       id="Contact"
-      className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800"
+      className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
     >
+      {/* Background dot texture pattern - same as hero section */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
+      </div>
+
       {/* Animated decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-orange-500 opacity-10 blur-3xl animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-orange-400 opacity-10 blur-3xl animate-pulse"></div>
         <div className="absolute top-1/2 left-1/3 w-40 h-40 rounded-full bg-amber-300 opacity-5 blur-2xl animate-pulse"></div>
-      </div>
+      </div> */}
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center bg-gradient-to-r from-orange-500 to-amber-400 text-white px-4 py-1.5 rounded-full mb-4 shadow-lg">
             <Sparkles className="w-4 h-4 mr-2" />
