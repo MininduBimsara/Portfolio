@@ -248,7 +248,7 @@ export default function HeroSection() {
             <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-32 h-32 sm:w-48 sm:h-48 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
             <div className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-700 border border-gray-600 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
               <img
-                src="/img/hero.jpg"
+                src="/img/new.png"
                 alt="Professional portrait"
                 className="w-full h-full object-cover"
                 onError={(e) => {
