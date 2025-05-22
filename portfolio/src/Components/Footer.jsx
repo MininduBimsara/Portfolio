@@ -336,7 +336,7 @@ function Footer() {
               © {currentYear} Minindu's Portfolio. All rights reserved.
             </div>
 
-            <div className="flex flex-wrap justify-center space-x-6">
+            {/* <div className="flex flex-wrap justify-center space-x-6">
               <a
                 href="#"
                 className="text-gray-600 hover:text-orange-500 text-sm transition-colors mb-2 md:mb-0"
@@ -355,7 +355,7 @@ function Footer() {
               >
                 Cookie Policy
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

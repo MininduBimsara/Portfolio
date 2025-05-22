@@ -7,6 +7,7 @@ import {
   Github,
   Facebook,
 } from "lucide-react";
+import { Link } from "react-scroll";
 
 export default function HeroSection() {
   const typedTextRef = useRef(null);
@@ -89,7 +90,7 @@ export default function HeroSection() {
               }}
             >
               <img
-                src="/img/hero.jpg"
+                src="/img/new.png"
                 alt="Professional portrait"
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -112,13 +113,26 @@ export default function HeroSection() {
               technologies and a focus on user experience.
             </p>
             <div className="flex gap-3">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition-all flex items-center gap-2 text-sm shadow-md hover:shadow-lg transform hover:scale-105">
-                View Work
-                <ArrowRight size={16} />
-              </button>
-              <button className="bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600 font-medium py-2 px-4 rounded-lg transition-all text-sm shadow-md hover:shadow-lg">
-                Contact
-              </button>
+              <Link
+                to="MyPortfolio"
+                smooth={true}
+                duration={600}
+                offset={-40}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-3 group cursor-pointer shadow-lg hover:shadow-orange-500/25"
+              >
+                <span>My Work</span>
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              </Link>
+              <Link
+                to="Contact"
+                smooth={true}
+                duration={600}
+                offset={-40}
+                className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-orange-500/50 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-3 group cursor-pointer"
+              >
+                <span>Connect</span>
+                <ArrowRight className="h-4 w-4 text-orange-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              </Link>
             </div>
           </div>
 

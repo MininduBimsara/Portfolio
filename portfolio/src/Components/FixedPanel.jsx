@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-scroll";
+
 
 const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
   const isVisible = scrollPosition > heroSectionHeight;
@@ -31,7 +33,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           <div className="absolute inset-0 rounded-full bg-orange-400 transform -rotate-6 shadow-md"></div>
           <div className="absolute inset-0 rounded-full overflow-hidden border-2 border-white shadow-md">
             <img
-              src="/img/hero.jpg"
+              src="/img/new.png"
               alt="Profile"
               className="w-full h-full object-cover"
               onError={(e) => {
@@ -44,7 +46,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
 
         {/* Name and Title with refined typography */}
         <h2 className="text-3xl font-bold text-center text-white mb-2 font-sans">
-          Your Name
+          Minindu Abeywardena
         </h2>
         <p className="text-orange-500 text-center font-medium mb-6 tracking-wide">
           Full Stack Developer
@@ -58,12 +60,32 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
 
         {/* Call to Action Buttons with enhanced styling */}
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg">
-            Contact Me
-          </button>
-          <button className="bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-400 border-opacity-30 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md">
+          <Link
+            to="Contact"
+            smooth={true}
+            duration={600}
+            offset={-40}
+            className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-orange-500/50 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-3 group cursor-pointer"
+          >
+            <span>Contact Me</span>
+          </Link>
+          <a
+            href="https://drive.google.com/uc?export=download&id=1QccToXDHNlhmoAQO3gUE2RovOWOobMhO"
+            className="bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-400 border-opacity-30 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+          >
+            {/* <svg
+              className="w-5 h-5 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path d="M13 7h-2V3H9v4H7l3 3 3-3zm-7 8v2h10v-2H6z" />
+            </svg> */}
             Download CV
-          </button>
+          </a>
         </div>
 
         {/* Social Media Links */}

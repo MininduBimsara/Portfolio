@@ -108,21 +108,6 @@ function Navbar() {
                         smooth={true}
                         offset={-70}
                         duration={500}
-                        to="MyPortfolio"
-                        className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
-                          activeSection === "MyPortfolio" ? "font-medium" : ""
-                        }`}
-                      >
-                        Portfolios
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        activeClass="text-orange-300"
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
                         to="AboutMe"
                         className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
                           activeSection === "AboutMe" ? "font-medium" : ""
@@ -138,12 +123,12 @@ function Navbar() {
                         smooth={true}
                         offset={-70}
                         duration={500}
-                        to="Contact"
+                        to="MyPortfolio"
                         className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
-                          activeSection === "Contact" ? "font-medium" : ""
+                          activeSection === "MyPortfolio" ? "font-medium" : ""
                         }`}
                       >
-                        Contact
+                        Portfolios
                       </Link>
                     </li>
                     <li>
@@ -160,6 +145,21 @@ function Navbar() {
                         }`}
                       >
                         Skills
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        activeClass="text-orange-300"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        to="Contact"
+                        className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                          activeSection === "Contact" ? "font-medium" : ""
+                        }`}
+                      >
+                        Contact
                       </Link>
                     </li>
                   </ul>
@@ -236,24 +236,6 @@ function Navbar() {
                       smooth={true}
                       offset={-70}
                       duration={500}
-                      to="MyPortfolio"
-                      onClick={handleLinkClick}
-                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
-                        activeSection === "MyPortfolio"
-                          ? "font-medium text-orange-500 bg-orange-50"
-                          : ""
-                      }`}
-                    >
-                      Portfolios
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      activeClass="text-orange-500"
-                      spy={true}
-                      smooth={true}
-                      offset={-70}
-                      duration={500}
                       to="AboutMe"
                       onClick={handleLinkClick}
                       className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
@@ -272,15 +254,15 @@ function Navbar() {
                       smooth={true}
                       offset={-70}
                       duration={500}
-                      to="Contact"
+                      to="MyPortfolio"
                       onClick={handleLinkClick}
                       className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
-                        activeSection === "Contact"
+                        activeSection === "MyPortfolio"
                           ? "font-medium text-orange-500 bg-orange-50"
                           : ""
                       }`}
                     >
-                      Contact
+                      Portfolios
                     </Link>
                   </li>
                   <li>
@@ -298,6 +280,24 @@ function Navbar() {
                       }`}
                     >
                       Skills
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      activeClass="text-orange-500"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      to="Contact"
+                      onClick={handleLinkClick}
+                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
+                        activeSection === "Contact"
+                          ? "font-medium text-orange-500 bg-orange-50"
+                          : ""
+                      }`}
+                    >
+                      Contact
                     </Link>
                   </li>
                 </ul>
