@@ -64,7 +64,6 @@ export default function ContactMe() {
         <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
       </div>
 
-
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center bg-gradient-to-r from-orange-500 to-amber-400 text-white px-4 py-1.5 rounded-full mb-4 shadow-lg">
@@ -95,7 +94,7 @@ export default function ContactMe() {
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-400">Email</p>
                   <p className="text-white group-hover:text-orange-400 transition-colors">
-                    contact@yourname.com
+                    minindubim@gmail.com
                   </p>
                 </div>
               </div>
@@ -107,7 +106,7 @@ export default function ContactMe() {
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-400">Phone</p>
                   <p className="text-white group-hover:text-orange-400 transition-colors">
-                    +1 (555) 123-4567
+                    +94 71 588 1536
                   </p>
                 </div>
               </div>
@@ -134,7 +133,7 @@ export default function ContactMe() {
               <div className="flex space-x-4">
                 {/* Facebook */}
                 <a
-                  href="#"
+                  href="https://www.facebook.com/share/1AN798rrEy/"
                   className="bg-gray-700/50 hover:bg-orange-500/20 p-3 rounded-lg transition-all duration-300 hover:scale-110 transform"
                   aria-label="Facebook"
                 >
@@ -153,7 +152,7 @@ export default function ContactMe() {
 
                 {/* Instagram */}
                 <a
-                  href="#"
+                  href="https://www.instagram.com/bimxara_01?igsh=MW1lMzRtZXZtbjh3cQ=="
                   className="bg-gray-700/50 hover:bg-orange-500/20 p-3 rounded-lg transition-all duration-300 hover:scale-110 transform"
                   aria-label="Instagram"
                 >
@@ -174,7 +173,7 @@ export default function ContactMe() {
 
                 {/* LinkedIn */}
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/minindu-abeywardena"
                   className="bg-gray-700/50 hover:bg-orange-500/20 p-3 rounded-lg transition-all duration-300 hover:scale-110 transform"
                   aria-label="LinkedIn"
                 >
@@ -195,7 +194,7 @@ export default function ContactMe() {
 
                 {/* GitHub */}
                 <a
-                  href="#"
+                  href="https://github.com/MininduBimsara"
                   className="bg-gray-700/50 hover:bg-orange-500/20 p-3 rounded-lg transition-all duration-300 hover:scale-110 transform"
                   aria-label="GitHub"
                 >

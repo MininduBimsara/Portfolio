@@ -116,21 +116,21 @@ export default function HeroSection() {
       id="heroSection"
       className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
     >
-      {/* Background dot texture pattern - kept this */}
+      {/* Background dot texture pattern - same as AboutMe section */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24 lg:py-32 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12">
-          <div className="w-full md:w-1/2 space-y-6 sm:space-y-8">
-            <div className="inline-block">
-              <span className="bg-gray-800 bg-opacity-80 text-orange-400 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium border border-orange-400 border-opacity-30 shadow-lg">
-                {/* Typed text element */}
+      <div className="container mx-auto px-6 py-16 relative z-10">
+        <div className="relative flex items-center justify-center min-h-[80vh]">
+          {/* Main Title Card - Top Left */}
+          <div className="absolute top-0 left-0 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-8 max-w-md transform -rotate-2 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
+            <div className="inline-block mb-4">
+              <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600">
                 <span
                   ref={typedTextRef}
                   id="typed-text"
-                  className="inline-block min-w-[120px] sm:min-w-[140px]"
+                  className="inline-block min-w-[140px]"
                 ></span>
                 <span
                   ref={cursorRef}
@@ -140,125 +140,238 @@ export default function HeroSection() {
                 </span>
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-3xl lg:text-4xl font-light text-white leading-tight mb-4">
               Building{" "}
-              <span className="text-orange-400 relative">
+              <span className="font-bold bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent relative">
                 digital experiences
-                <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-1 bg-orange-400 bg-opacity-30 rounded-full"></span>
+                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-400 rounded-full"></span>
               </span>{" "}
-              <span className="block sm:inline">that make an impact</span>
+              that make an impact
             </h1>
-            <p className="text-base sm:text-lg text-gray-300 max-w-xl">
+          </div>
+
+          {/* Central Profile Image */}
+          <div className="relative z-20">
+            <div className="absolute -top-8 -left-8 w-72 h-72 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
+            <div className="absolute -bottom-8 -right-8 w-72 h-72 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
+            <div
+              className="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 bg-gray-700 border border-gray-600 backdrop-blur-sm"
+              style={{
+                animation: "float 6s ease-in-out infinite",
+              }}
+            >
+              <img
+                src="/img/hero.jpg"
+                alt="Professional portrait"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.log("Image failed to load:", e.target.src);
+                }}
+                onLoad={() => console.log("Image loaded successfully")}
+              />
+              {/* Overlay gradient for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+            </div>
+
+            {/* Floating accent elements around the image */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-orange-400 rounded-full animate-bounce"></div>
+            <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-blue-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-1/2 -left-8 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
+
+            {/* Add the animation keyframes via inline style */}
+            <style jsx>{`
+              @keyframes float {
+                0% {
+                  transform: translateY(0px);
+                }
+                50% {
+                  transform: translateY(-20px);
+                }
+                100% {
+                  transform: translateY(0px);
+                }
+              }
+            `}</style>
+          </div>
+
+          {/* Description Card - Top Right */}
+          <div className="absolute top-12 right-0 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 max-w-sm transform rotate-1 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
+            <p className="text-gray-300 text-lg leading-relaxed mb-4">
               I craft responsive and performant web applications with modern
-              technologies and a focus on user experience and clean code.
+              technologies and a focus on user experience.
             </p>
-            <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 sm:py-3 sm:px-6 rounded-lg transition-all flex items-center gap-2 shadow-lg text-sm sm:text-base">
-                View My Work
-                <ArrowRight size={16} className="sm:size-18" />
+            <div className="flex gap-3">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition-all flex items-center gap-2 text-sm shadow-md hover:shadow-lg transform hover:scale-105">
+                View Work
+                <ArrowRight size={16} />
               </button>
-              <button className="bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-400 border-opacity-30 font-medium py-2 px-4 sm:py-3 sm:px-6 rounded-lg transition-all shadow-lg text-sm sm:text-base">
-                Get In Touch
+              <button className="bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600 font-medium py-2 px-4 rounded-lg transition-all text-sm shadow-md hover:shadow-lg">
+                Contact
               </button>
             </div>
           </div>
 
-          <div className="w-full sm:w-3/4 md:w-1/2 relative mt-8 md:mt-0">
-            {/* Social media icons - vertical floating bar */}
-            <div className="hidden md:flex absolute -right-2 top-1/2 -translate-y-1/2 flex-col gap-5 bg-gray-800 bg-opacity-90 p-4 rounded-l-lg shadow-xl z-20 border-l-2 border-orange-500 border-opacity-30">
+          {/* Skills/Tech Stack Card - Bottom Left */}
+          <div className="absolute bottom-0 left-8 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 max-w-xs transform -rotate-1 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
+            <h3 className="text-lg font-light text-white mb-3">
+              <span className="font-mono text-orange-400">{">"}</span> Tech
+              Stack
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {["React", "Node.js", "TypeScript", "Tailwind", "MongoDB"].map(
+                (tech) => (
+                  <span
+                    key={tech}
+                    className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm border border-gray-600 hover:bg-gray-600 transition-colors"
+                  >
+                    {tech}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Social Media Card - Bottom Right */}
+          <div className="absolute bottom-12 right-8 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 transform rotate-2 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
+            <h3 className="text-lg font-light text-white mb-4 text-center">
+              <span className="font-mono text-orange-400">{">"}</span> Connect
+            </h3>
+            <div className="flex gap-4 justify-center">
               <a
                 href="#"
-                className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-110"
+                className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-blue-500"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={20} className="lg:size-22" />
+                <Linkedin size={24} />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-110"
+                className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-pink-500"
                 aria-label="Instagram"
               >
-                <Instagram size={20} className="lg:size-22" />
+                <Instagram size={24} />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-110"
+                className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-blue-400"
                 aria-label="Twitter"
               >
-                <Twitter size={20} className="lg:size-22" />
+                <Twitter size={24} />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-all transform hover:scale-110"
+                className="text-gray-400 hover:text-white transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-white"
                 aria-label="GitHub"
               >
-                <Github size={20} className="lg:size-22" />
+                <Github size={24} />
               </a>
             </div>
+          </div>
 
-            {/* Profile image with responsive adjustments */}
-            <div className="group relative z-10 w-4/5 sm:w-3/4 mx-auto aspect-square">
-              {/* Frame border */}
-              <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-orange-400 via-purple-500 to-blue-500 p-1 shadow-2xl transition-transform">
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden opacity-30"></div>
-              </div>
-
-              {/* Profile image container */}
-              <div className="relative z-10 rounded-xl sm:rounded-2xl overflow-hidden w-full h-full shadow-2xl transform transition-transform duration-300 group-hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-transparent opacity-20 mix-blend-overlay"></div>
-                <img
-                  src="/img/hero.jpg"
-                  alt="Professional portrait"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Stylish overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-500 opacity-10 mix-blend-overlay"></div>
-              </div>
-            </div>
-
-            {/* Mobile social media icons with enhanced styling */}
-            <div className="flex md:hidden justify-center mt-6 gap-4 sm:gap-6">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-110 p-2"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} className="sm:size-24" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-110 p-2"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} className="sm:size-24" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-110 p-2"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} className="sm:size-24" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-all transform hover:scale-110 p-2"
-                aria-label="GitHub"
-              >
-                <Github size={20} className="sm:size-24" />
-              </a>
+          {/* Floating Quote Card - Left Side */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-2xl shadow-2xl p-6 max-w-xs transform -rotate-12 hover:-rotate-6 transition-transform duration-300 border border-orange-400">
+            <div className="text-4xl font-bold mb-2 text-orange-200">"</div>
+            <p className="text-sm leading-relaxed">
+              Clean code is not written by following a set of rules. Clean code
+              is written by developers who care.
+            </p>
+            <div className="text-right mt-3 text-xs opacity-80">
+              - Robert C. Martin
             </div>
           </div>
         </div>
       </div>
 
-      {/* Enhanced scroll indicator using only Tailwind */}
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-60 flex flex-col items-center">
-        <span className="text-xs sm:text-sm mb-1 sm:mb-2 font-light tracking-wider">
+      {/* Enhanced scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-60 flex flex-col items-center z-20">
+        <span className="text-sm mb-2 font-light tracking-wider">
           Scroll down
         </span>
-        <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white border-opacity-40 rounded-full flex items-start justify-center p-1 group">
+        <div className="w-6 h-10 border-2 border-white border-opacity-40 rounded-full flex items-start justify-center p-1 group">
           <div className="w-1 h-2 bg-orange-400 rounded-full animate-bounce group-hover:h-3 transition-all"></div>
+        </div>
+      </div>
+
+      {/* Mobile Responsive Layout */}
+      <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+        <div className="container mx-auto px-6 py-16 text-center relative z-10">
+          <div className="mb-8">
+            <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600">
+              <span
+                ref={typedTextRef}
+                id="typed-text-mobile"
+                className="inline-block min-w-[140px]"
+              ></span>
+              <span className="inline-block ml-1 animate-pulse">|</span>
+            </span>
+          </div>
+
+          <div className="relative mb-8">
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
+            <div className="w-64 h-64 mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-700 border border-gray-600 backdrop-blur-sm">
+              <img
+                src="/api/placeholder/300/300"
+                alt="Professional portrait"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          <h1 className="text-3xl font-light text-white leading-tight mb-4">
+            Building{" "}
+            <span className="font-bold bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent relative">
+              digital experiences
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-400 rounded-full"></span>
+            </span>{" "}
+            that make an impact
+          </h1>
+
+          <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md mx-auto">
+            I craft responsive and performant web applications with modern
+            technologies and a focus on user experience.
+          </p>
+
+          <div className="flex gap-3 justify-center mb-8">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-all flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
+              View Work
+              <ArrowRight size={18} />
+            </button>
+            <button className="bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600 font-medium py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-xl">
+              Contact
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-4">
+            <a
+              href="#"
+              className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={24} />
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              aria-label="Instagram"
+            >
+              <Instagram size={24} />
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              aria-label="Twitter"
+            >
+              <Twitter size={24} />
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              aria-label="GitHub"
+            >
+              <Github size={24} />
+            </a>
+          </div>
         </div>
       </div>
     </section>

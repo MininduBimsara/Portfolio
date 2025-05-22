@@ -26,7 +26,9 @@ export default function Home() {
   return (
     <>
       {/* Original Hero Section at the top - full width */}
-      <HeroSection />
+      <div className="w-full min-h-screen">
+        <HeroSection />
+      </div>
 
       {/* Split Layout - Fixed Left Panel & Scrollable Right Content */}
       <div className="flex flex-col md:flex-row relative">
