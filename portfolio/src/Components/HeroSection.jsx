@@ -3,7 +3,9 @@ import { ArrowRight, Linkedin, Twitter, Instagram, Github } from "lucide-react";
 
 export default function HeroSection() {
   const typedTextRef = useRef(null);
+  const typedTextMobileRef = useRef(null);
   const cursorRef = useRef(null);
+  const cursorMobileRef = useRef(null);
 
   useEffect(() => {
     // Import Typed.js dynamically to avoid SSR issues
@@ -27,36 +29,48 @@ export default function HeroSection() {
     return () => {
       // Clean up any instances if component unmounts
       const typedInstance = typedTextRef.current?.__typed__;
+      const typedMobileInstance = typedTextMobileRef.current?.__typed__;
       if (typedInstance) {
         typedInstance.destroy();
+      }
+      if (typedMobileInstance) {
+        typedMobileInstance.destroy();
       }
     };
   }, []);
 
-  // Typed.js initialization
+  // Typed.js initialization for both desktop and mobile
   const initializeTypedText = () => {
-    if (!typedTextRef.current) return;
+    const strings = [
+      "Full Stack Developer",
+      "React Specialist",
+      "UI/UX Enthusiast",
+    ];
 
-    if (typeof window.Typed !== "undefined") {
-      const typed = new window.Typed(typedTextRef.current, {
-        strings: [
-          "Full Stack Developer",
-          "React Specialist",
-          "UI/UX Enthusiast",
-        ],
-        typeSpeed: 80,
-        backSpeed: 50,
-        backDelay: 1000,
-        startDelay: 300,
-        loop: true,
-        showCursor: true,
-        cursorChar: "|",
-        autoInsertCss: true,
-      });
+    const options = {
+      strings,
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 1000,
+      startDelay: 300,
+      loop: true,
+      showCursor: false, // We'll use custom cursor
+      autoInsertCss: true,
+    };
 
-      // Store the instance for cleanup
+    // Initialize for desktop
+    if (typedTextRef.current && typeof window.Typed !== "undefined") {
+      const typed = new window.Typed(typedTextRef.current, options);
       typedTextRef.current.__typed__ = typed;
-    } else {
+    }
+
+    // Initialize for mobile
+    if (typedTextMobileRef.current && typeof window.Typed !== "undefined") {
+      const typedMobile = new window.Typed(typedTextMobileRef.current, options);
+      typedTextMobileRef.current.__typed__ = typedMobile;
+    }
+
+    if (typeof window.Typed === "undefined") {
       console.error("Typed.js library not loaded properly");
       fallbackTyping();
     }
@@ -64,51 +78,52 @@ export default function HeroSection() {
 
   // Fallback typing animation using CSS and JS
   const fallbackTyping = () => {
-    if (!typedTextRef.current || !cursorRef.current) return;
-
     const roles = [
       "Full Stack Developer",
       "React Specialist",
       "UI/UX Enthusiast",
     ];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
 
-    function typeText() {
-      const currentText = roles[roleIndex];
+    const animateText = (textRef, cursorRef) => {
+      if (!textRef.current || !cursorRef.current) return;
 
-      if (isDeleting) {
-        typedTextRef.current.textContent = currentText.substring(
-          0,
-          charIndex - 1
-        );
-        charIndex--;
-      } else {
-        typedTextRef.current.textContent = currentText.substring(
-          0,
-          charIndex + 1
-        );
-        charIndex++;
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeText() {
+        const currentText = roles[roleIndex];
+
+        if (isDeleting) {
+          textRef.current.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          textRef.current.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 50 : 80;
+
+        if (!isDeleting && charIndex === currentText.length) {
+          typeSpeed = 1500;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+        }
+
+        setTimeout(typeText, typeSpeed);
       }
 
-      let typeSpeed = isDeleting ? 50 : 80;
+      // Start with an initial value
+      textRef.current.textContent = "Web Developer";
+      cursorRef.current.classList.add("animate-pulse");
+      setTimeout(typeText, 1000);
+    };
 
-      if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 1500;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-      }
-
-      setTimeout(typeText, typeSpeed);
-    }
-
-    // Start with an initial value
-    typedTextRef.current.textContent = "Web Developer";
-    cursorRef.current.classList.add("animate-pulse");
-    setTimeout(typeText, 1000);
+    // Animate both desktop and mobile versions
+    animateText(typedTextRef, cursorRef);
+    animateText(typedTextMobileRef, cursorMobileRef);
   };
 
   return (
@@ -116,20 +131,20 @@ export default function HeroSection() {
       id="heroSection"
       className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
     >
-      {/* Background dot texture pattern - same as AboutMe section */}
+      {/* Background dot texture pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
       </div>
 
-      <div className="container mx-auto px-6 py-16 relative z-10">
-        <div className="relative flex items-center justify-center min-h-[80vh]">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10">
+        {/* Desktop Layout - Hidden on mobile */}
+        <div className="hidden lg:flex relative items-center justify-center min-h-[80vh]">
           {/* Main Title Card - Top Left */}
-          <div className="absolute top-0 left-0 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-8 max-w-md transform -rotate-2 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
+          <div className="absolute top-0 left-0 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 xl:p-8 max-w-md transform -rotate-2 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
             <div className="inline-block mb-4">
               <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600">
                 <span
                   ref={typedTextRef}
-                  id="typed-text"
                   className="inline-block min-w-[140px]"
                 ></span>
                 <span
@@ -140,7 +155,7 @@ export default function HeroSection() {
                 </span>
               </span>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-light text-white leading-tight mb-4">
+            <h1 className="text-2xl xl:text-3xl 2xl:text-4xl font-light text-white leading-tight mb-4">
               Building{" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent relative">
                 digital experiences
@@ -151,11 +166,11 @@ export default function HeroSection() {
           </div>
 
           {/* Central Profile Image */}
-          <div className="relative z-20">
+          <div className="relative z-20 flex items-center justify-center">
             <div className="absolute -top-8 -left-8 w-72 h-72 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
             <div className="absolute -bottom-8 -right-8 w-72 h-72 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
             <div
-              className="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 bg-gray-700 border border-gray-600 backdrop-blur-sm"
+              className="w-80 h-80 xl:w-96 xl:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300 bg-gray-700 border border-gray-600 backdrop-blur-sm mx-auto"
               style={{
                 animation: "float 6s ease-in-out infinite",
               }}
@@ -165,33 +180,16 @@ export default function HeroSection() {
                 alt="Professional portrait"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  console.log("Image failed to load:", e.target.src);
+                  e.target.src = "/api/placeholder/400/400";
                 }}
-                onLoad={() => console.log("Image loaded successfully")}
               />
-              {/* Overlay gradient for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             </div>
 
-            {/* Floating accent elements around the image */}
+            {/* Floating accent elements */}
             <div className="absolute -top-4 -right-4 w-8 h-8 bg-orange-400 rounded-full animate-bounce"></div>
             <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-blue-400 rounded-full animate-pulse"></div>
             <div className="absolute top-1/2 -left-8 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
-
-            {/* Add the animation keyframes via inline style */}
-            <style jsx>{`
-              @keyframes float {
-                0% {
-                  transform: translateY(0px);
-                }
-                50% {
-                  transform: translateY(-20px);
-                }
-                100% {
-                  transform: translateY(0px);
-                }
-              }
-            `}</style>
           </div>
 
           {/* Description Card - Top Right */}
@@ -280,45 +278,48 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Enhanced scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-60 flex flex-col items-center z-20">
-        <span className="text-sm mb-2 font-light tracking-wider">
-          Scroll down
-        </span>
-        <div className="w-6 h-10 border-2 border-white border-opacity-40 rounded-full flex items-start justify-center p-1 group">
-          <div className="w-1 h-2 bg-orange-400 rounded-full animate-bounce group-hover:h-3 transition-all"></div>
-        </div>
-      </div>
-
-      {/* Mobile Responsive Layout */}
-      <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-        <div className="container mx-auto px-6 py-16 text-center relative z-10">
-          <div className="mb-8">
-            <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600">
+        {/* Mobile/Tablet Layout */}
+        <div className="lg:hidden text-center relative z-10 px-4">
+          {/* Typing Animation Badge */}
+          <div className="mb-6 sm:mb-8">
+            <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600 inline-block">
               <span
-                ref={typedTextRef}
-                id="typed-text-mobile"
+                ref={typedTextMobileRef}
                 className="inline-block min-w-[140px]"
               ></span>
-              <span className="inline-block ml-1 animate-pulse">|</span>
+              <span
+                ref={cursorMobileRef}
+                className="inline-block ml-1 animate-pulse"
+              >
+                |
+              </span>
             </span>
           </div>
 
-          <div className="relative mb-8">
-            <div className="absolute -top-6 -left-6 w-48 h-48 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
-            <div className="w-64 h-64 mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-700 border border-gray-600 backdrop-blur-sm">
+          {/* Profile Image */}
+          <div className="relative mb-6 sm:mb-8">
+            <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-32 h-32 sm:w-48 sm:h-48 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-32 h-32 sm:w-48 sm:h-48 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
+            <div className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-700 border border-gray-600 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
               <img
-                src="/api/placeholder/300/300"
+                src="/img/hero.jpg"
                 alt="Professional portrait"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = "/api/placeholder/300/300";
+                }}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             </div>
+
+            {/* Mobile floating elements */}
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-orange-400 rounded-full animate-bounce"></div>
+            <div className="absolute -bottom-3 -left-3 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
           </div>
 
-          <h1 className="text-3xl font-light text-white leading-tight mb-4">
+          {/* Main Title */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-white leading-tight mb-4 px-2">
             Building{" "}
             <span className="font-bold bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent relative">
               digital experiences
@@ -327,13 +328,15 @@ export default function HeroSection() {
             that make an impact
           </h1>
 
-          <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md mx-auto">
+          {/* Description */}
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-6 max-w-md mx-auto px-2">
             I craft responsive and performant web applications with modern
             technologies and a focus on user experience.
           </p>
 
-          <div className="flex gap-3 justify-center mb-8">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-all flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8 px-4">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
               View Work
               <ArrowRight size={18} />
             </button>
@@ -342,38 +345,96 @@ export default function HeroSection() {
             </button>
           </div>
 
-          <div className="flex justify-center gap-4">
+          {/* Tech Stack */}
+          <div className="mb-8">
+            <h3 className="text-lg font-light text-white mb-3">
+              <span className="font-mono text-orange-400">{">"}</span> Tech
+              Stack
+            </h3>
+            <div className="flex flex-wrap gap-2 justify-center max-w-sm mx-auto">
+              {["React", "Node.js", "TypeScript", "Tailwind", "MongoDB"].map(
+                (tech) => (
+                  <span
+                    key={tech}
+                    className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm border border-gray-600 hover:bg-gray-600 transition-colors"
+                  >
+                    {tech}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex justify-center gap-4 mb-8">
             <a
               href="#"
-              className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-blue-500"
               aria-label="LinkedIn"
             >
-              <Linkedin size={24} />
+              <Linkedin size={20} />
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-pink-500"
               aria-label="Instagram"
             >
-              <Instagram size={24} />
+              <Instagram size={20} />
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-blue-400"
               aria-label="Twitter"
             >
-              <Twitter size={24} />
+              <Twitter size={20} />
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:text-white transition-all transform hover:scale-125 p-2 bg-gray-800 border border-gray-600 rounded-full"
+              className="text-gray-400 hover:text-white transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-white"
               aria-label="GitHub"
             >
-              <Github size={24} />
+              <Github size={20} />
             </a>
+          </div>
+
+          {/* Mobile Quote */}
+          <div className="bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-2xl shadow-2xl p-6 mx-4 border border-orange-400">
+            <div className="text-3xl font-bold mb-2 text-orange-200">"</div>
+            <p className="text-sm leading-relaxed">
+              Clean code is not written by following a set of rules. Clean code
+              is written by developers who care.
+            </p>
+            <div className="text-right mt-3 text-xs opacity-80">
+              - Robert C. Martin
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-60 flex flex-col items-center z-20">
+        <span className="text-sm mb-2 font-light tracking-wider hidden sm:block">
+          Scroll down
+        </span>
+        <div className="w-6 h-10 border-2 border-white border-opacity-40 rounded-full flex items-start justify-center p-1 group">
+          <div className="w-1 h-2 bg-orange-400 rounded-full animate-bounce group-hover:h-3 transition-all"></div>
+        </div>
+      </div>
+
+      {/* CSS Animation */}
+      <style jsx>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+      `}</style>
     </section>
   );
 }

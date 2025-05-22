@@ -41,11 +41,11 @@ export default function ContactMe() {
     setActiveField(null);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Form submitted:", formData);
+  //   // Add your form submission logic here
+  // };
 
   const handleSuggestionClick = (suggestion) => {
     setFormData((prev) => ({
@@ -216,8 +216,28 @@ export default function ContactMe() {
 
           {/* Contact form */}
           <div className="lg:col-span-3 bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-orange-500/30">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              id="contact-form"
+              action="https://formsubmit.co/minindubim@gmail.com"
+              method="POST"
+              className="space-y-6"
+            >
               <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  {/* Hidden Inputs */}
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input
+                    type="hidden"
+                    name="_next"
+                    value=""
+                  />
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Message from Portfolio Contact Form"
+                  />
+                  <input type="hidden" name="_template" value="table" />
+                </div>
                 <div className="relative group">
                   <label
                     htmlFor="firstName"
