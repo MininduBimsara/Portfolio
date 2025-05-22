@@ -141,15 +141,15 @@ export default function MyPortfolio() {
           {/* Stats Section */}
           <div className="mt-12 flex gap-12 flex-wrap justify-center">
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white">12+</span>
+              <span className="text-3xl font-bold text-white">20+</span>
               <span className="text-gray-400 text-sm">Projects Completed</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white">8</span>
+              <span className="text-3xl font-bold text-white">20+</span>
               <span className="text-gray-400 text-sm">Technologies</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl font-bold text-white">4</span>
+              <span className="text-3xl font-bold text-white">3+</span>
               <span className="text-gray-400 text-sm">Years Experience</span>
             </div>
           </div>

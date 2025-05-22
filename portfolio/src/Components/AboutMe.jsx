@@ -27,9 +27,9 @@ export default function AboutMe() {
   ];
 
   const stats = [
-    { number: "50+", label: "Projects Completed" },
+    { number: "20+", label: "Projects Completed" },
     { number: "3+", label: "Years Experience" },
-    { number: "10+", label: "Technologies Mastered" },
+    { number: "20+", label: "Technologies Mastered" },
     { number: "100%", label: "Client Satisfaction" },
   ];
 
@@ -69,7 +69,7 @@ export default function AboutMe() {
             That Matter
           </h2>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            As a passionate software engineer, I transform complex problems into
+            As a passionate Full Stack Developer, I transform complex problems into
             elegant solutions. My approach combines technical excellence with
             creative thinking to build applications that not only function
             flawlessly but also provide exceptional user experiences.
