@@ -181,7 +181,7 @@ function Footer() {
                   href="mailto:jane@devportfolio.com"
                   className="text-gray-400 hover:text-orange-500 transition-colors"
                 >
-                  Minindu@portfolio.com
+                  minindubim@gmail.com
                 </a>
               </div>
             </div>
