@@ -1,130 +1,42 @@
-import { useEffect, useRef } from "react";
-import { ArrowRight, Linkedin, Twitter, Instagram, Github } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Linkedin, Twitter, Instagram, Github, Facebook } from "lucide-react";
 
 export default function HeroSection() {
   const typedTextRef = useRef(null);
   const typedTextMobileRef = useRef(null);
-  const cursorRef = useRef(null);
-  const cursorMobileRef = useRef(null);
+  const [currentRole, setCurrentRole] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const roles = [
+    "Full Stack Developer",
+    "React Specialist",
+    "UI/UX Enthusiast",
+  ];
 
   useEffect(() => {
-    // Import Typed.js dynamically to avoid SSR issues
-    const loadTyped = async () => {
-      try {
-        // Load Typed.js from CDN
-        const script = document.createElement("script");
-        script.src =
-          "https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js";
-        script.async = true;
-        script.onload = initializeTypedText;
-        document.body.appendChild(script);
-      } catch (error) {
-        console.error("Error loading Typed.js:", error);
-        fallbackTyping();
-      }
-    };
+    const typeSpeed = isDeleting ? 50 : 100;
+    const role = roles[currentRole];
 
-    loadTyped();
-
-    return () => {
-      // Clean up any instances if component unmounts
-      const typedInstance = typedTextRef.current?.__typed__;
-      const typedMobileInstance = typedTextMobileRef.current?.__typed__;
-      if (typedInstance) {
-        typedInstance.destroy();
-      }
-      if (typedMobileInstance) {
-        typedMobileInstance.destroy();
-      }
-    };
-  }, []);
-
-  // Typed.js initialization for both desktop and mobile
-  const initializeTypedText = () => {
-    const strings = [
-      "Full Stack Developer",
-      "React Specialist",
-      "UI/UX Enthusiast",
-    ];
-
-    const options = {
-      strings,
-      typeSpeed: 80,
-      backSpeed: 50,
-      backDelay: 1000,
-      startDelay: 300,
-      loop: true,
-      showCursor: false, // We'll use custom cursor
-      autoInsertCss: true,
-    };
-
-    // Initialize for desktop
-    if (typedTextRef.current && typeof window.Typed !== "undefined") {
-      const typed = new window.Typed(typedTextRef.current, options);
-      typedTextRef.current.__typed__ = typed;
-    }
-
-    // Initialize for mobile
-    if (typedTextMobileRef.current && typeof window.Typed !== "undefined") {
-      const typedMobile = new window.Typed(typedTextMobileRef.current, options);
-      typedTextMobileRef.current.__typed__ = typedMobile;
-    }
-
-    if (typeof window.Typed === "undefined") {
-      console.error("Typed.js library not loaded properly");
-      fallbackTyping();
-    }
-  };
-
-  // Fallback typing animation using CSS and JS
-  const fallbackTyping = () => {
-    const roles = [
-      "Full Stack Developer",
-      "React Specialist",
-      "UI/UX Enthusiast",
-    ];
-
-    const animateText = (textRef, cursorRef) => {
-      if (!textRef.current || !cursorRef.current) return;
-
-      let roleIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-
-      function typeText() {
-        const currentText = roles[roleIndex];
-
-        if (isDeleting) {
-          textRef.current.textContent = currentText.substring(0, charIndex - 1);
-          charIndex--;
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (currentText.length < role.length) {
+          setCurrentText(role.substring(0, currentText.length + 1));
         } else {
-          textRef.current.textContent = currentText.substring(0, charIndex + 1);
-          charIndex++;
+          setTimeout(() => setIsDeleting(true), 2000);
         }
-
-        let typeSpeed = isDeleting ? 50 : 80;
-
-        if (!isDeleting && charIndex === currentText.length) {
-          typeSpeed = 1500;
-          isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          roleIndex = (roleIndex + 1) % roles.length;
+      } else {
+        if (currentText.length > 0) {
+          setCurrentText(role.substring(0, currentText.length - 1));
+        } else {
+          setIsDeleting(false);
+          setCurrentRole((prev) => (prev + 1) % roles.length);
         }
-
-        setTimeout(typeText, typeSpeed);
       }
+    }, typeSpeed);
 
-      // Start with an initial value
-      textRef.current.textContent = "Web Developer";
-      cursorRef.current.classList.add("animate-pulse");
-      setTimeout(typeText, 1000);
-    };
-
-    // Animate both desktop and mobile versions
-    animateText(typedTextRef, cursorRef);
-    animateText(typedTextMobileRef, cursorMobileRef);
-  };
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentRole, roles]);
 
   return (
     <section
@@ -143,16 +55,10 @@ export default function HeroSection() {
           <div className="absolute top-0 left-0 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 xl:p-8 max-w-md transform -rotate-2 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
             <div className="inline-block mb-4">
               <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600">
-                <span
-                  ref={typedTextRef}
-                  className="inline-block min-w-[140px]"
-                ></span>
-                <span
-                  ref={cursorRef}
-                  className="inline-block ml-1 animate-pulse"
-                >
-                  |
+                <span className="inline-block min-w-[140px]">
+                  {currentText}
                 </span>
+                <span className="inline-block ml-1 animate-pulse">|</span>
               </span>
             </div>
             <h1 className="text-2xl xl:text-3xl 2xl:text-4xl font-light text-white leading-tight mb-4">
@@ -229,40 +135,66 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Social Media Card - Bottom Right */}
-          <div className="absolute bottom-12 right-8 bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 transform rotate-2 hover:rotate-0 transition-transform duration-300 backdrop-blur-sm">
-            <h3 className="text-lg font-light text-white mb-4 text-center">
-              <span className="font-mono text-orange-400">{">"}</span> Connect
-            </h3>
-            <div className="flex gap-4 justify-center">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-blue-500"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={24} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-pink-500"
-                aria-label="Instagram"
-              >
-                <Instagram size={24} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-blue-400"
-                aria-label="Twitter"
-              >
-                <Twitter size={24} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-all transform hover:scale-125 p-2 hover:bg-gray-700 rounded-full border border-gray-600 hover:border-white"
-                aria-label="GitHub"
-              >
-                <Github size={24} />
-              </a>
+          {/* Enhanced Social Media Card - Bottom Right */}
+          <div className="absolute bottom-12 right-8 group">
+            <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-gray-600/50 rounded-3xl shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition-all duration-500 backdrop-blur-xl relative overflow-hidden">
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              {/* Subtle border glow */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-400/20 via-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+
+              <div className="relative z-10">
+                <h3 className="text-xl font-light text-white mb-6 text-center tracking-wide">
+                  <span className="font-mono text-orange-400 text-2xl animate-pulse">
+                    {">"}
+                  </span>
+                  <span className="ml-2 bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+                    Connect
+                  </span>
+                </h3>
+
+                <div className="flex gap-3 justify-center">
+                  <a
+                    href="https://www.linkedin.com/in/minindu-abeywardena"
+                    className="group/icon relative text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 p-3 hover:bg-blue-500/10 rounded-2xl border border-gray-600/50 hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/25"
+                    aria-label="LinkedIn"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/0 to-blue-600/0 group-hover/icon:from-blue-400/10 group-hover/icon:to-blue-600/5 rounded-2xl transition-all duration-300"></div>
+                    <Linkedin size={20} className="relative z-10" />
+                  </a>
+
+                  <a
+                    href="https://www.instagram.com/bimxara_01?igsh=MW1lMzRtZXZtbjh3cQ=="
+                    className="group/icon relative text-gray-400 hover:text-pink-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 p-3 hover:bg-pink-500/10 rounded-2xl border border-gray-600/50 hover:border-pink-400/50 hover:shadow-lg hover:shadow-pink-500/25"
+                    aria-label="Instagram"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-pink-400/0 to-purple-600/0 group-hover/icon:from-pink-400/10 group-hover/icon:to-purple-600/5 rounded-2xl transition-all duration-300"></div>
+                    <Instagram size={20} className="relative z-10" />
+                  </a>
+
+                  <a
+                    href="https://www.facebook.com/share/1AN798rrEy/"
+                    className="group/icon relative text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 p-3 hover:bg-sky-500/10 rounded-2xl border border-gray-600/50 hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-500/25"
+                    aria-label="Facebook"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-sky-400/0 to-blue-600/0 group-hover/icon:from-sky-400/10 group-hover/icon:to-blue-600/5 rounded-2xl transition-all duration-300"></div>
+                    <Facebook size={20} className="relative z-10" />
+                  </a>
+
+                  <a
+                    href="https://github.com/MininduBimsara"
+                    className="group/icon relative text-gray-400 hover:text-gray-100 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 p-3 hover:bg-gray-500/10 rounded-2xl border border-gray-600/50 hover:border-gray-400/50 hover:shadow-lg hover:shadow-gray-500/25"
+                    aria-label="GitHub"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-400/0 to-gray-600/0 group-hover/icon:from-gray-400/10 group-hover/icon:to-gray-600/5 rounded-2xl transition-all duration-300"></div>
+                    <Github size={20} className="relative z-10" />
+                  </a>
+                </div>
+
+                {/* Subtle pulse effect */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse opacity-60"></div>
+              </div>
             </div>
           </div>
 
@@ -284,16 +216,8 @@ export default function HeroSection() {
           {/* Typing Animation Badge */}
           <div className="mb-6 sm:mb-8">
             <span className="bg-gray-900 text-orange-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600 inline-block">
-              <span
-                ref={typedTextMobileRef}
-                className="inline-block min-w-[140px]"
-              ></span>
-              <span
-                ref={cursorMobileRef}
-                className="inline-block ml-1 animate-pulse"
-              >
-                |
-              </span>
+              <span className="inline-block min-w-[140px]">{currentText}</span>
+              <span className="inline-block ml-1 animate-pulse">|</span>
             </span>
           </div>
 
@@ -422,7 +346,7 @@ export default function HeroSection() {
       </div>
 
       {/* CSS Animation */}
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0% {
             transform: translateY(0px);

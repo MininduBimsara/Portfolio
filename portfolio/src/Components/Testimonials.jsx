@@ -74,7 +74,7 @@ export default function Testimonials() {
           <h2 className="text-4xl font-bold text-gray-300">What People Say</h2>
         </div>
 
-        <style jsx>{`
+        <style>{`
           @keyframes fadeIn {
             from {
               opacity: 0;

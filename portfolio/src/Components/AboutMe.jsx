@@ -40,7 +40,7 @@ export default function AboutMe() {
             </div>
 
             {/* Add the animation keyframes via inline style */}
-            <style jsx>{`
+            <style>{`
               @keyframes float {
                 0% {
                   transform: translateY(0px);

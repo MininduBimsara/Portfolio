@@ -154,7 +154,9 @@ function Navbar() {
                         offset={-70}
                         duration={500}
                         className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
-                          activeSection === "skills-section" ? "font-medium" : ""
+                          activeSection === "skills-section"
+                            ? "font-medium"
+                            : ""
                         }`}
                       >
                         Skills
@@ -193,26 +195,12 @@ function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="md:hidden">
-          <div
-            className={`${
-              scrolled || isMobileMenuOpen
-                ? "bg-amber-700 shadow-lg"
-                : "bg-transparent"
-            } py-4 transition-all duration-300`}
-          >
-            <div className="flex items-center justify-between">
-              {/* Mobile Logo */}
-              <div className="flex items-center">
-                <div className="h-3 w-3 bg-orange-500 rounded-full mr-3"></div>
-                <span className="text-white font-medium text-lg">
-                  Portfolio
-                </span>
-              </div>
-
-              {/* Mobile Menu Button */}
+          <div className="py-4 transition-all duration-300">
+            <div className="flex items-center justify-end">
+              {/* Mobile Menu Button - Only hamburger icon */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-white p-2 rounded-lg hover:bg-amber-600 transition-colors"
+                className="text-gray-800 p-2 rounded-lg hover:bg-gray-100 transition-colors"
                 aria-label="Toggle mobile menu"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -221,20 +209,20 @@ function Navbar() {
 
             {/* Mobile Menu Items */}
             {isMobileMenuOpen && (
-              <div className="mt-4 pt-4 border-t border-amber-600">
-                <ul className="space-y-4">
+              <div className="mt-4 pt-4 bg-white rounded-lg shadow-lg border">
+                <ul className="space-y-2">
                   <li>
                     <Link
-                      activeClass="text-orange-300"
+                      activeClass="text-orange-500"
                       spy={true}
                       smooth={true}
                       offset={-70}
                       duration={500}
                       to="heroSection"
                       onClick={handleLinkClick}
-                      className={`block text-white hover:text-orange-300 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-amber-600 ${
+                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
                         activeSection === "heroSection"
-                          ? "font-medium bg-amber-600"
+                          ? "font-medium text-orange-500 bg-orange-50"
                           : ""
                       }`}
                     >
@@ -243,16 +231,16 @@ function Navbar() {
                   </li>
                   <li>
                     <Link
-                      activeClass="text-orange-300"
+                      activeClass="text-orange-500"
                       spy={true}
                       smooth={true}
                       offset={-70}
                       duration={500}
                       to="MyPortfolio"
                       onClick={handleLinkClick}
-                      className={`block text-white hover:text-orange-300 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-amber-600 ${
+                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
                         activeSection === "MyPortfolio"
-                          ? "font-medium bg-amber-600"
+                          ? "font-medium text-orange-500 bg-orange-50"
                           : ""
                       }`}
                     >
@@ -261,16 +249,16 @@ function Navbar() {
                   </li>
                   <li>
                     <Link
-                      activeClass="text-orange-300"
+                      activeClass="text-orange-500"
                       spy={true}
                       smooth={true}
                       offset={-70}
                       duration={500}
                       to="AboutMe"
                       onClick={handleLinkClick}
-                      className={`block text-white hover:text-orange-300 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-amber-600 ${
+                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
                         activeSection === "AboutMe"
-                          ? "font-medium bg-amber-600"
+                          ? "font-medium text-orange-500 bg-orange-50"
                           : ""
                       }`}
                     >
@@ -279,20 +267,37 @@ function Navbar() {
                   </li>
                   <li>
                     <Link
-                      activeClass="text-orange-300"
+                      activeClass="text-orange-500"
                       spy={true}
                       smooth={true}
                       offset={-70}
                       duration={500}
                       to="Contact"
                       onClick={handleLinkClick}
-                      className={`block text-white hover:text-orange-300 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-amber-600 ${
+                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
                         activeSection === "Contact"
-                          ? "font-medium bg-amber-600"
+                          ? "font-medium text-orange-500 bg-orange-50"
                           : ""
                       }`}
                     >
                       Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="skills-section"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      onClick={handleLinkClick}
+                      className={`block text-gray-800 hover:text-orange-500 transition-colors cursor-pointer py-2 px-4 rounded-lg hover:bg-gray-50 ${
+                        activeSection === "skills-section"
+                          ? "font-medium text-orange-500 bg-orange-50"
+                          : ""
+                      }`}
+                    >
+                      Skills
                     </Link>
                   </li>
                 </ul>
