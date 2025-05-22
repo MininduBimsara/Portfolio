@@ -43,7 +43,7 @@ function Footer() {
               </div>
               <div className="ml-4">
                 <div className="text-2xl font-bold">
-                  <span className="text-orange-500">Minindu</span>
+                  <span className="text-orange-500">Minindu's</span>
                   <span className="text-gray-300">Portfolio</span>
                 </div>
                 <div className="text-xs text-gray-500 mt-1">
