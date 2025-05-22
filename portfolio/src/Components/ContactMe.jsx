@@ -222,7 +222,7 @@ export default function ContactMe() {
                 <input
                   type="hidden"
                   name="_next"
-                  value="http://localhost:5173/"
+                  value="https://portfolio-minindu.vercel.app/"
                 />
                 <input
                   type="hidden"

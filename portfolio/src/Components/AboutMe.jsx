@@ -107,7 +107,7 @@ export default function AboutMe() {
                   My Development Philosophy
                 </h3>
                 <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                  I believe in writing code that tells a story—clean,
+                  I believe in writing code that tells a story clean,
                   maintainable, and purposeful. Every line should serve a
                   function, every component should enhance the user journey, and
                   every application should solve real-world problems
