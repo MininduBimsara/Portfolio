@@ -39,11 +39,11 @@ function Footer() {
           <div className="lg:col-span-4 flex flex-col">
             <div className="mb-6 flex items-center">
               <div className="h-12 w-12 bg-gray-800 rounded-lg flex items-center justify-center shadow-lg border-l border-t border-gray-700">
-                <span className="text-orange-500 font-bold text-xl">JS</span>
+                <span className="text-orange-500 font-bold text-xl">MB</span>
               </div>
               <div className="ml-4">
                 <div className="text-2xl font-bold">
-                  <span className="text-orange-500">Dev</span>
+                  <span className="text-orange-500">Minindu</span>
                   <span className="text-gray-300">Portfolio</span>
                 </div>
                 <div className="text-xs text-gray-500 mt-1">
@@ -115,14 +115,14 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  to="testimonial"
+                  to="skills-section"
                   spy={true}
                   smooth={true}
                   offset={-70}
                   duration={500}
                   className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
                 >
-                  Testimonials
+                  Skills
                 </Link>
               </li>
             </ul>
@@ -181,7 +181,7 @@ function Footer() {
                   href="mailto:jane@devportfolio.com"
                   className="text-gray-400 hover:text-orange-500 transition-colors"
                 >
-                  jane@devportfolio.com
+                  Minindu@portfolio.com
                 </a>
               </div>
             </div>
@@ -209,7 +209,7 @@ function Footer() {
                   href="tel:+123456789"
                   className="text-gray-400 hover:text-orange-500 transition-colors"
                 >
-                  +1 (234) 567-890
+                  +94 71 588 1536
                 </a>
               </div>
             </div>
@@ -239,14 +239,14 @@ function Footer() {
               </div>
               <div>
                 <p className="text-gray-600 text-xs">Location</p>
-                <span className="text-gray-400">San Francisco, CA</span>
+                <span className="text-gray-400">Kegalle , Sri Lanka</span>
               </div>
             </div>
 
             {/* Social Media Icons - Simplified and consistent */}
             <div className="flex space-x-3 mt-auto">
               <a
-                href="https://github.com/"
+                href="https://github.com/MininduBimsara"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-gray-800 hover:bg-gray-700 p-3 rounded-md transition-all duration-300 border-l border-t border-gray-700"
@@ -266,7 +266,7 @@ function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/minindu-abeywardena"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-gray-800 hover:bg-gray-700 p-3 rounded-md transition-all duration-300 border-l border-t border-gray-700"
@@ -285,7 +285,7 @@ function Footer() {
                   />
                 </svg>
               </a>
-              <a
+              {/* <a
                 href="https://www.twitter.com/"
                 target="_blank"
                 rel="noreferrer"
@@ -324,7 +324,7 @@ function Footer() {
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.23 6.53c1.12 1.36 1.8 3.08 1.86 4.94-1.19-.24-2.28-.35-3.29-.35-.56 0-1.11.04-1.65.11-.54-1.4-1.17-2.72-1.88-3.96 1.96-.5 3.5-1.04 4.96-.74zM15.98 7.54c-1.3-.28-2.71.18-4.51.63.74 1.17 1.33 2.43 1.79 3.76-1.23.65-2.15 1.54-2.74 2.61-1-.6-2.03-1.06-3.12-1.35.22-2.47 1.36-4.97 3.14-6.72 1.65.66 3.21 1.75 5.44 1.07zM6.34 14.6c1.21.3 2.36.8 3.43 1.5-.21.81-.29 1.65-.22 2.49-1.12.2-2.25.31-3.43.31-1.54 0-3.04-.23-4.45-.68.54-2.63 2.27-4.67 4.67-5.62zM4.45 17.55c1.24.39 2.57.6 3.93.6 1.06 0 2.1-.11 3.09-.34-.07-1.04.14-2.07.65-3.01.43-.8 1.08-1.4 1.85-1.85-.4 1.3-.48 2.56-.21 3.91-.8.93-1.11 2.11-.89 3.28-2.49-.47-4.67-1.9-6.25-3.92-.41-.66-.74-1.37-.97-2.11.51 1.09 1.14 2.1 1.9 3.01-1.1-.25-2.15-.73-3.1-1.57z"
                   />
                 </svg>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -333,7 +333,7 @@ function Footer() {
         <div className="border-t border-gray-800 pt-8 pb-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-600 text-sm mb-4 md:mb-0">
-              © {currentYear} DevPortfolio. All rights reserved.
+              © {currentYear} Minindu's Portfolio. All rights reserved.
             </div>
 
             <div className="flex flex-wrap justify-center space-x-6">

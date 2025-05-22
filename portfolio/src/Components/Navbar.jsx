@@ -146,6 +146,20 @@ function Navbar() {
                         Contact
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        to="skills-section"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                          activeSection === "skills-section" ? "font-medium" : ""
+                        }`}
+                      >
+                        Skills
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               )}

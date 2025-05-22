@@ -35,6 +35,17 @@ export default function MyPortfolio() {
     },
     {
       id: 3,
+      title: "SwiftConnect",
+      description:
+        "A dynamic logistics and courier service platform, offering fast, reliable, and seamless shipping solutions.",
+      image: "/img/swiftconnect.png",
+      link: "View Project",
+      url: "https://github.com/MininduBimsara/SwiftConnect.git",
+      category: "Full Stack",
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+    },
+    {
+      id: 4,
       title: "FreshKit",
       description:
         "A Sri Lankan e-commerce platform delivering farm-fresh groceries with PayPal payments and an efficient admin panel.",
@@ -43,6 +54,17 @@ export default function MyPortfolio() {
       url: "https://github.com/MininduBimsara/FreshKit.git",
       category: "Full Stack",
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+    },
+    {
+      id: 5,
+      title: "WiseVoice",
+      description:
+        "A UI for a voice-activated chat application designed for senior citizens, utilizing voice interaction to increase accessibility and usability.",
+      image: "/img/WiseVoice.png",
+      link: "View Project",
+      url: "https://www.figma.com/design/08wSftQ6vaAhMbCm2WRy2j/Figma-Project?node-id=0-1&t=rPIAM6RmcyL1LjAW-1",
+      category: "Frontend",
+      technologies: ["Figma"],
     },
   ];
 

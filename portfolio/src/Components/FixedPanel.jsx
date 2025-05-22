@@ -1,11 +1,11 @@
 const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
   return (
-    // Fixed Panel
+    // Fixed Panel - Hidden on mobile, only visible on desktop after hero section
     <div
-      className={`fixed -left-full md:static md:left-0 md:w-2/5 lg:w-1/3 md:h-screen md:sticky top-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-6 md:p-12 md:flex md:flex-col md:justify-center shadow-lg relative ${
+      className={`hidden md:block md:w-2/5 lg:w-1/3 md:h-screen md:sticky top-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-6 md:p-12 md:flex md:flex-col md:justify-center shadow-lg relative transition-opacity duration-500 ${
         scrollPosition <= heroSectionHeight
-          ? "md:opacity-0"
-          : "md:opacity-100 transition-opacity duration-500"
+          ? "md:opacity-0 md:pointer-events-none"
+          : "md:opacity-100"
       }`}
     >
       {/* Background dot texture pattern */}
@@ -22,6 +22,9 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
               src="/img/profile.jpg"
               alt="Profile"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.src = "/api/placeholder/160/160";
+              }}
             />
           </div>
         </div>
