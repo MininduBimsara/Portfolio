@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Linkedin, Twitter, Instagram, Github, Facebook } from "lucide-react";
+import {
+  ArrowRight,
+  Linkedin,
+  Twitter,
+  Instagram,
+  Github,
+  Facebook,
+} from "lucide-react";
 
 export default function HeroSection() {
   const typedTextRef = useRef(null);
@@ -36,7 +43,7 @@ export default function HeroSection() {
     }, typeSpeed);
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentRole, roles]);
+  }, [currentText, isDeleting, currentRole]); // Fixed: removed 'roles' from dependencies
 
   return (
     <section
@@ -231,9 +238,11 @@ export default function HeroSection() {
                 alt="Professional portrait"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = "/api/placeholder/300/300";
+                  e.target.onerror = null; // Prevent infinite loop
+                  e.target.src = "/api/placeholder/400/400";
                 }}
               />
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             </div>
 
@@ -289,31 +298,31 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links - Fixed to match desktop version */}
           <div className="flex justify-center gap-4 mb-8">
             <a
-              href="#"
+              href="https://www.linkedin.com/in/minindu-abeywardena"
               className="text-gray-400 hover:text-blue-500 transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-blue-500"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/bimxara_01?igsh=MW1lMzRtZXZtbjh3cQ=="
               className="text-gray-400 hover:text-pink-500 transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-pink-500"
               aria-label="Instagram"
             >
               <Instagram size={20} />
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/share/1AN798rrEy/"
               className="text-gray-400 hover:text-blue-400 transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-blue-400"
-              aria-label="Twitter"
+              aria-label="Facebook"
             >
-              <Twitter size={20} />
+              <Facebook size={20} />
             </a>
             <a
-              href="#"
+              href="https://github.com/MininduBimsara"
               className="text-gray-400 hover:text-white transition-all transform hover:scale-125 p-3 bg-gray-800 border border-gray-600 rounded-full hover:border-white"
               aria-label="GitHub"
             >

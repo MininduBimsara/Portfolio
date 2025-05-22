@@ -9,7 +9,8 @@ import Fixedpanel from "../../Components/FixedPanel";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0); // <-- Fix here
+
   const heroSectionHeight = 100;
 
   // Track scroll position
@@ -41,12 +42,9 @@ export default function Home() {
 
         {/* Scrollable Right Content */}
         <div className="w-full md:w-3/5 lg:w-2/3 bg-gray-900">
-          {/* Remove empty div wrappers and ensure proper spacing */}
           <AboutMe />
           <MySkills />
           <MyPortfolio />
-          {/* Uncomment if you want testimonials */}
-          {/* <Testimonial /> */}
           <ContactMe />
         </div>
       </div>

@@ -41,12 +41,6 @@ export default function ContactMe() {
     setActiveField(null);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Form submitted:", formData);
-  //   // Add your form submission logic here
-  // };
-
   const handleSuggestionClick = (suggestion) => {
     setFormData((prev) => ({
       ...prev,
@@ -222,26 +216,24 @@ export default function ContactMe() {
               method="POST"
               className="space-y-6"
             >
+              {/* Hidden Inputs - moved outside the grid */}
+              <div className="hidden">
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Message from Portfolio Contact Form"
+                />
+                <input type="hidden" name="_template" value="table" />
+              </div>
+
+              {/* Form fields grid */}
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  {/* Hidden Inputs */}
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input
-                    type="hidden"
-                    name="_next"
-                    value=""
-                  />
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value="New Message from Portfolio Contact Form"
-                  />
-                  <input type="hidden" name="_template" value="table" />
-                </div>
                 <div className="relative group">
                   <label
                     htmlFor="firstName"
-                    className={`block text-sm font-medium mb-1 transition-colors ${
+                    className={`block text-sm font-medium mb-2 transition-colors ${
                       activeField === "firstName"
                         ? "text-orange-400"
                         : "text-gray-300 group-hover:text-orange-300"
@@ -262,14 +254,14 @@ export default function ContactMe() {
                       placeholder="Your first name"
                       required
                     />
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors" />
                   </div>
                 </div>
 
                 <div className="relative group">
                   <label
                     htmlFor="lastName"
-                    className={`block text-sm font-medium mb-1 transition-colors ${
+                    className={`block text-sm font-medium mb-2 transition-colors ${
                       activeField === "lastName"
                         ? "text-orange-400"
                         : "text-gray-300 group-hover:text-orange-300"
@@ -290,14 +282,14 @@ export default function ContactMe() {
                       placeholder="Your last name"
                       required
                     />
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors" />
                   </div>
                 </div>
 
                 <div className="relative group">
                   <label
                     htmlFor="email"
-                    className={`block text-sm font-medium mb-1 transition-colors ${
+                    className={`block text-sm font-medium mb-2 transition-colors ${
                       activeField === "email"
                         ? "text-orange-400"
                         : "text-gray-300 group-hover:text-orange-300"
@@ -318,14 +310,14 @@ export default function ContactMe() {
                       placeholder="your.email@example.com"
                       required
                     />
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors" />
                   </div>
                 </div>
 
                 <div className="relative group">
                   <label
                     htmlFor="phoneNumber"
-                    className={`block text-sm font-medium mb-1 transition-colors ${
+                    className={`block text-sm font-medium mb-2 transition-colors ${
                       activeField === "phoneNumber"
                         ? "text-orange-400"
                         : "text-gray-300 group-hover:text-orange-300"
@@ -346,7 +338,7 @@ export default function ContactMe() {
                       placeholder="Your phone number"
                       required
                     />
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400" />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors" />
                   </div>
                 </div>
               </div>
@@ -354,7 +346,7 @@ export default function ContactMe() {
               <div className="relative group">
                 <label
                   htmlFor="topic"
-                  className={`block text-sm font-medium mb-1 transition-colors ${
+                  className={`block text-sm font-medium mb-2 transition-colors ${
                     activeField === "topic"
                       ? "text-orange-400"
                       : "text-gray-300 group-hover:text-orange-300"
@@ -369,7 +361,7 @@ export default function ContactMe() {
                   onChange={handleChange}
                   onFocus={() => handleFieldFocus("topic")}
                   onBlur={handleFieldBlur}
-                  className="w-full px-4 py-3 rounded-xl border bg-gray-800 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 appearance-none"
+                  className="w-full px-4 py-3 rounded-xl border bg-gray-800 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 appearance-none transition-all"
                   required
                 >
                   <option value="" className="bg-gray-800 text-gray-400">
@@ -402,7 +394,7 @@ export default function ContactMe() {
               <div className="relative group">
                 <label
                   htmlFor="message"
-                  className={`block text-sm font-medium mb-1 transition-colors ${
+                  className={`block text-sm font-medium mb-2 transition-colors ${
                     activeField === "message"
                       ? "text-orange-400"
                       : "text-gray-300 group-hover:text-orange-300"
@@ -418,7 +410,7 @@ export default function ContactMe() {
                   onFocus={() => handleFieldFocus("message")}
                   onBlur={handleFieldBlur}
                   rows="4"
-                  className="w-full px-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 resize-y"
+                  className="w-full px-4 py-3 rounded-xl border bg-gray-800/50 border-gray-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-white placeholder-gray-400 resize-y transition-all"
                   placeholder="Tell me about your project, goals, or questions..."
                   required
                 ></textarea>

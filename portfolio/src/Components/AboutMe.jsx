@@ -1,13 +1,36 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, Lightbulb, Target, Zap } from "lucide-react";
 import { Link } from "react-scroll";
 
 export default function AboutMe() {
   const expertise = [
-    "Full-stack web development",
-    "User-centric UI/UX design",
-    "Scalable cloud-based solutions",
-    "Software architecture & optimization",
+    {
+      icon: Code2,
+      title: "Full-stack Development",
+      description: "End-to-end web applications with modern frameworks",
+    },
+    {
+      icon: Lightbulb,
+      title: "UI/UX Design",
+      description: "User-centered design with focus on accessibility",
+    },
+    {
+      icon: Zap,
+      title: "Cloud Solutions",
+      description: "Scalable infrastructure and deployment strategies",
+    },
+    {
+      icon: Target,
+      title: "Performance Optimization",
+      description: "Code efficiency and application speed enhancement",
+    },
+  ];
+
+  const stats = [
+    { number: "50+", label: "Projects Completed" },
+    { number: "3+", label: "Years Experience" },
+    { number: "10+", label: "Technologies Mastered" },
+    { number: "100%", label: "Client Satisfaction" },
   ];
 
   return (
@@ -15,136 +38,157 @@ export default function AboutMe() {
       id="AboutMe"
       className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden"
     >
-      {/* Background dot texture pattern - same as hero section */}
+      {/* Enhanced background with animated elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
       </div>
 
+      {/* Floating geometric shapes */}
+      <div className="absolute top-20 left-10 w-20 h-20 border border-orange-500/20 rounded-lg rotate-45 animate-pulse"></div>
+      <div
+        className="absolute bottom-32 right-16 w-16 h-16 bg-orange-500/10 rounded-full animate-bounce"
+        style={{ animationDelay: "2s" }}
+      ></div>
+      <div
+        className="absolute top-1/2 right-1/4 w-12 h-12 border-2 border-orange-400/30 rotate-12"
+        style={{ animation: "spin 8s linear infinite" }}
+      ></div>
+
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-16">
-          {/* Mobile Image Section - Shown only on mobile */}
-          <div className="w-full sm:w-3/4 lg:hidden relative mb-8">
-            <div className="absolute -top-6 -left-6 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
+        {/* Header Section */}
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="bg-gray-800 text-orange-400 px-4 py-2 rounded-full text-sm font-mono tracking-wider border border-gray-700 inline-block mb-4">
+            ABOUT ME
+          </span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-white tracking-tight mb-6">
+            Crafting Digital{" "}
+            <span className="font-bold bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
+              Experiences
+            </span>
+            <br />
+            That Matter
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            As a passionate software engineer, I transform complex problems into
+            elegant solutions. My approach combines technical excellence with
+            creative thinking to build applications that not only function
+            flawlessly but also provide exceptional user experiences.
+          </p>
+        </div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20">
+          {stats.map((stat, index) => (
             <div
-              className="relative z-10 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-gray-700 backdrop-blur-sm"
-              style={{
-                animation: "float 6s ease-in-out infinite",
-              }}
+              key={index}
+              className="text-center group hover:scale-105 transition-transform duration-300"
             >
-              <img
-                src="/img/about.png"
-                alt="Profile"
-                className="w-full h-auto object-cover"
-              />
+              <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm hover:border-orange-500/50 transition-colors duration-300">
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors duration-300">
+                  {stat.number}
+                </div>
+                <div className="text-sm sm:text-base text-gray-400 font-light">
+                  {stat.label}
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
 
-            {/* Add the animation keyframes via inline style */}
-            <style>{`
-              @keyframes float {
-                0% {
-                  transform: translateY(0px);
-                }
-                50% {
-                  transform: translateY(-15px);
-                }
-                100% {
-                  transform: translateY(0px);
-                }
-              }
-            `}</style>
+        {/* Philosophy Section */}
+        <div className="mb-16 sm:mb-20">
+          <div className="bg-gradient-to-r from-gray-800/30 to-gray-700/30 border border-gray-700 rounded-2xl p-8 sm:p-12 backdrop-blur-sm">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="bg-orange-500/20 p-3 rounded-full border border-orange-500/30">
+                <Lightbulb className="h-6 w-6 text-orange-400" />
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
+                  My Development Philosophy
+                </h3>
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                  I believe in writing code that tells a story—clean,
+                  maintainable, and purposeful. Every line should serve a
+                  function, every component should enhance the user journey, and
+                  every application should solve real-world problems
+                  efficiently.
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          {/* Text Section */}
-          <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8">
-            <div className="space-y-2">
-              <span className="bg-gray-800 text-orange-400 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-mono tracking-wider border border-gray-700">
-                ABOUT ME
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight">
-                Passionate About Building{" "}
-                <span className="font-bold bg-gradient-to-r from-orange-300 to-orange-500 bg-clip-text text-transparent">
-                  Scalable Solutions
-                </span>
-              </h2>
-            </div>
-
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-              As a software engineer, I specialize in crafting intuitive and
-              efficient digital experiences. My work blends creativity with
-              technical expertise to deliver applications that enhance usability
-              and performance. I strive to build scalable, maintainable, and
-              user-focused solutions that stand the test of time.
-            </p>
-
-            <div className="mt-8 sm:mt-12 space-y-3 sm:space-y-4">
-              <h3 className="text-lg sm:text-xl font-light text-white">
-                <span className="font-mono text-orange-400">{">"}</span>{" "}
-                EXPERTISE
-              </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {expertise.map((item, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center gap-2 sm:gap-3 group"
-                  >
-                    <div className="bg-gray-800 border border-gray-700 p-1 rounded-full group-hover:bg-orange-500/20 transition-colors duration-300">
-                      <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-orange-400" />
+        {/* Expertise Grid */}
+        <div className="mb-12 sm:mb-16">
+          <h3 className="text-2xl sm:text-3xl font-light text-white mb-8 text-center">
+            <span className="font-mono text-orange-400">{">"}</span> Core
+            Expertise
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {expertise.map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="group bg-gray-800/30 border border-gray-700 rounded-xl p-6 sm:p-8 hover:border-orange-500/50 transition-all duration-300 hover:transform hover:scale-105"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="bg-orange-500/20 p-3 rounded-full border border-orange-500/30 group-hover:bg-orange-500/30 transition-colors duration-300">
+                      <IconComponent className="h-6 w-6 text-orange-400" />
                     </div>
-                    <span className="text-sm sm:text-base text-gray-300 group-hover:text-white transition-colors duration-300">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg sm:text-xl font-medium text-white mb-2 group-hover:text-orange-300 transition-colors duration-300">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
+        {/* Call to Action */}
+        <div className="text-center">
+          <div className="inline-flex flex-col sm:flex-row gap-4 sm:gap-6">
             <Link
               to="MyPortfolio"
               smooth={true}
               duration={600}
               offset={-40}
-              className="mt-8 sm:mt-12 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-light py-2.5 px-5 sm:py-3 sm:px-6 rounded-full transition-all duration-300 flex items-center gap-2 group cursor-pointer text-sm sm:text-base inline-flex"
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-3 group cursor-pointer shadow-lg hover:shadow-orange-500/25"
             >
-              <span>View Portfolio</span>
-              <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              <span>Explore My Work</span>
+              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
             </Link>
-          </div>
 
-          {/* Desktop Image Section - Hidden on mobile */}
-          <div className="w-full lg:w-1/2 relative hidden lg:block">
-            <div className="absolute -top-8 -left-8 w-72 h-72 bg-gradient-to-br from-orange-500/10 to-orange-400/10 rounded-full blur-xl -z-10"></div>
-            <div className="absolute -bottom-8 -right-8 w-72 h-72 bg-gradient-to-tr from-orange-500/10 to-orange-300/10 rounded-full blur-xl -z-10"></div>
-            <div
-              className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 backdrop-blur-sm"
-              style={{
-                animation: "float 6s ease-in-out infinite",
-              }}
+            <Link
+              to="Contact"
+              smooth={true}
+              duration={600}
+              offset={-40}
+              className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-orange-500/50 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-3 group cursor-pointer"
             >
-              <img
-                src="/img/about.png"
-                alt="Profile"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-
-            {/* Add the animation keyframes via inline style */}
-            <style jsx>{`
-              @keyframes float {
-                0% {
-                  transform: translateY(0px);
-                }
-                50% {
-                  transform: translateY(-20px);
-                }
-                100% {
-                  transform: translateY(0px);
-                }
-              }
-            `}</style>
+              <span>Let's Connect</span>
+              <ArrowUpRight className="h-4 w-4 text-orange-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+            </Link>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </section>
   );
 }

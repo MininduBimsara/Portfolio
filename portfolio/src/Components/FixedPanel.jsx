@@ -1,16 +1,28 @@
+import React from "react";
+
 const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
   const isVisible = scrollPosition > heroSectionHeight;
 
+  // Split complex className into readable parts
+  const baseClasses =
+    "hidden md:block md:w-2/5 lg:w-1/3 md:h-screen md:sticky top-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-6 md:p-12 md:flex md:flex-col md:justify-center shadow-lg relative transition-opacity duration-500";
+  const visibilityClasses = isVisible
+    ? "md:opacity-100"
+    : "md:opacity-0 md:pointer-events-none";
+  const combinedClasses = `${baseClasses} ${visibilityClasses}`;
+
   return (
-    // Fixed Panel - Hidden on mobile, only visible on desktop after hero section
-    <div
-      className={`hidden md:block md:w-2/5 lg:w-1/3 md:h-screen md:sticky top-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-6 md:p-12 md:flex md:flex-col md:justify-center shadow-lg relative transition-opacity duration-500 ${
-        isVisible ? "md:opacity-100" : "md:opacity-0 md:pointer-events-none"
-      }`}
-    >
+    <div className={combinedClasses}>
       {/* Background dot texture pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[radial-gradient(circle,_white_1px,_transparent_1px)] bg-[length:20px_20px]"></div>
+        <div
+          className="absolute inset-0 bg-black bg-opacity-20"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, white 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
+        ></div>
       </div>
 
       <div className="max-w-md mx-auto relative z-10">
@@ -19,10 +31,11 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           <div className="absolute inset-0 rounded-full bg-orange-400 transform -rotate-6 shadow-md"></div>
           <div className="absolute inset-0 rounded-full overflow-hidden border-2 border-white shadow-md">
             <img
-              src="/img/profile.jpg"
+              src="/img/hero.jpg"
               alt="Profile"
               className="w-full h-full object-cover"
               onError={(e) => {
+                e.target.onerror = null; // Prevent infinite loop
                 e.target.src = "/api/placeholder/160/160";
               }}
             />
@@ -56,9 +69,9 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
         {/* Social Media Links */}
         <div className="flex justify-center gap-4 mt-8">
           <a
-            href="https://twitter.com/yourprofile"
+            href="https://www.facebook.com/share/1AN798rrEy/"
             className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
-            aria-label="Twitter"
+            aria-label="Facebook"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -68,12 +81,13 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <title>Twitter</title>
-              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+              <title>Facebook</title>
+              <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.342v21.316C0 23.4.6 24 1.325 24h11.495v-9.294H9.69V11.01h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24h-1.918c-1.504 0-1.795.715-1.795 1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.4 24 24 23.4 24 22.658V1.342C24 .6 23.4 0 22.675 0z" />
             </svg>
           </a>
+
           <a
-            href="https://github.com/yourprofile"
+            href="https://github.com/MininduBimsara"
             className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
             aria-label="GitHub"
             target="_blank"
@@ -94,9 +108,9 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
             </svg>
           </a>
           <a
-            href="https://dribbble.com/yourprofile"
+            href="https://www.instagram.com/bimxara_01?igsh=MW1lMzRtZXZtbjh3cQ=="
             className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
-            aria-label="Dribbble"
+            aria-label="Instagram"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -106,16 +120,13 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <title>Dribbble</title>
-              <path
-                fillRule="evenodd"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                clipRule="evenodd"
-              ></path>
+              <title>Instagram</title>
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.056 2.003.24 2.466.403a4.924 4.924 0 011.675 1.092 4.924 4.924 0 011.092 1.675c.163.463.347 1.26.403 2.466.058 1.266.07 1.645.07 4.849s-.012 3.584-.07 4.85c-.056 1.206-.24 2.003-.403 2.466a4.924 4.924 0 01-1.092 1.675 4.924 4.924 0 01-1.675 1.092c-.463.163-1.26.347-2.466.403-1.266.058-1.645.07-4.85.07s-3.584-.012-4.849-.07c-1.206-.056-2.003-.24-2.466-.403a4.924 4.924 0 01-1.675-1.092 4.924 4.924 0 01-1.092-1.675c-.163-.463-.347-1.26-.403-2.466C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.849c.056-1.206.24-2.003.403-2.466a4.924 4.924 0 011.092-1.675 4.924 4.924 0 011.675-1.092c.463-.163 1.26-.347 2.466-.403C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.737 0 8.332.012 7.052.07 5.775.127 4.85.308 4.042.617a7.075 7.075 0 00-2.57 1.67A7.075 7.075 0 00.617 4.042C.308 4.85.127 5.775.07 7.052.012 8.332 0 8.737 0 12c0 3.263.012 3.668.07 4.948.057 1.277.238 2.202.547 3.01a7.075 7.075 0 001.67 2.57 7.075 7.075 0 002.57 1.67c.808.309 1.733.49 3.01.547 1.28.058 1.685.07 4.948.07s3.668-.012 4.948-.07c1.277-.057 2.202-.238 3.01-.547a7.075 7.075 0 002.57-1.67 7.075 7.075 0 001.67-2.57c.309-.808.49-1.733.547-3.01.058-1.28.07-1.685.07-4.948s-.012-3.668-.07-4.948c-.057-1.277-.238-2.202-.547-3.01a7.075 7.075 0 00-1.67-2.57A7.075 7.075 0 0019.958.617c-.808-.309-1.733-.49-3.01-.547C15.668.012 15.263 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" />
             </svg>
           </a>
+
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/minindu-abeywardena"
             className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
             aria-label="LinkedIn"
             target="_blank"
