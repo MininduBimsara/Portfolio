@@ -79,6 +79,30 @@ function Footer() {
               </li>
               <li>
                 <Link
+                  to="AboutMe"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="skills-section"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
+                >
+                  Skills
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="MyPortfolio"
                   spy={true}
                   smooth={true}
@@ -103,18 +127,6 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  to="AboutMe"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="Contact"
                   spy={true}
                   smooth={true}
@@ -123,18 +135,6 @@ function Footer() {
                   className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
                 >
                   Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="skills-section"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
-                >
-                  Skills
                 </Link>
               </li>
             </ul>
