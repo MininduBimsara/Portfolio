@@ -6,6 +6,7 @@ import MyPortfolio from "../../Components/MyPortfolio";
 import MySkills from "../../Components/MySkills";
 import Testimonial from "../../Components/Testimonials";
 import Fixedpanel from "../../Components/FixedPanel";
+import MediumBlogs from "../../Components/Blogs";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
@@ -45,6 +46,7 @@ export default function Home() {
           <AboutMe />
           <MySkills />
           <MyPortfolio />
+          <MediumBlogs />
           <ContactMe />
         </div>
       </div>

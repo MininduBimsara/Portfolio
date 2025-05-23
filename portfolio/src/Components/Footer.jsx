@@ -91,6 +91,18 @@ function Footer() {
               </li>
               <li>
                 <Link
+                  to="MediumBlogs"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  className="text-gray-500 hover:text-orange-500 transition-colors cursor-pointer"
+                >
+                  Blogs
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="AboutMe"
                   spy={true}
                   smooth={true}
