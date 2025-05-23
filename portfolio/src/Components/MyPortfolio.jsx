@@ -250,7 +250,7 @@ export default function MyPortfolio() {
               )}
             </button>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/MininduBimsara"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 bg-gray-800/60 hover:bg-gray-700/80 backdrop-blur-sm text-white hover:text-orange-300 py-2 px-4 rounded-lg border border-gray-700/50 transition duration-300"
