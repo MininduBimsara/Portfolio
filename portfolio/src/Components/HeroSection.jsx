@@ -49,7 +49,7 @@ export default function HeroSection() {
   return (
     <section
       id="heroSection"
-      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
+      className="select-none min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
     >
       {/* Background dot texture pattern */}
       <div className="absolute inset-0 opacity-10">
