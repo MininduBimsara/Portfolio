@@ -72,8 +72,6 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
           <a
             href="https://drive.google.com/uc?export=download&id=1QccToXDHNlhmoAQO3gUE2RovOWOobMhO"
             className="bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-400 border-opacity-30 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center"
-            target="_blank"
-            rel="noopener noreferrer"
             download
           >
             {/* <svg
