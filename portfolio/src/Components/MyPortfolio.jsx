@@ -392,6 +392,8 @@ export default function MyPortfolio() {
 
                     <a
                       href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group flex items-center text-orange-400 font-medium hover:text-orange-300 transition-colors duration-300 w-fit mt-auto"
                     >
                       {project.link}
