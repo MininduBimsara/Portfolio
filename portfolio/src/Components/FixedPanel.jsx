@@ -70,7 +70,7 @@ const FixedPanel = ({ scrollPosition, heroSectionHeight }) => {
             <span>Contact Me</span>
           </Link>
           <a
-            href="https://drive.google.com/uc?export=download&id=1J8yNfJhjiWESpkdpkknG9DUZdr9ATp1r"
+            href="https://drive.google.com/uc?export=download&id=1Ip4-ySVzzRxq-YwV4h79SkdhR5OaTYS8"
             className="bg-gray-800 hover:bg-gray-700 text-orange-400 border border-orange-400 border-opacity-30 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center"
             download
           >

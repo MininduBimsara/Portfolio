@@ -68,7 +68,7 @@ function Navbar() {
                 ></div>
                 {isExpanded && (
                   <span className="text-white font-medium transition-opacity duration-300">
-                    Home
+                    
                   </span>
                 )}
               </div>
