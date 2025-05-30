@@ -81,10 +81,10 @@ export default function HeroSection() {
             {/* Main Title */}
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-                UI/UX and Product
+                Full Stack
                 <br />
                 <span className="bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500 bg-clip-text text-transparent">
-                  Designer
+                  Developer
                 </span>
               </h1>
 
