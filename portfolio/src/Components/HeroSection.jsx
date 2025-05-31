@@ -201,7 +201,7 @@ export default function HeroSection() {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Main circular image container */}
-              <div className="relative w-96 h-96 lg:w-[500px] lg:h-[500px]">
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px]">
                 {/* Orange circular background with gradient similar to AboutMe theme */}
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 rounded-full shadow-2xl shadow-orange-500/20"></div>
 
