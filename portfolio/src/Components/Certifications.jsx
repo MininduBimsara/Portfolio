@@ -26,7 +26,7 @@ export default function Certifications() {
       credentialId: "UC-36788f9ab-66c7-4be0-a58c-c251441d1239",
       verifyUrl:
         "https://www.udemy.com/certificate/UC-36788f9ab-66c7-4be0-a58c-c251441d1239/",
-      logo: "",
+      logo: "../assets/udemy.jpg",
       category: "Programming",
       status: "Active",
     },
@@ -39,7 +39,7 @@ export default function Certifications() {
       credentialId: "UC-47d6e1ac-e1cd-4193-9a31-f590ceb4b0fa",
       verifyUrl:
         "https://www.udemy.com/certificate/UC-47d6e1ac-e1cd-4193-9a31-f590ceb4b0fa/",
-      logo: "",
+      logo: "../assets/udemy.jpg",
       category: "Web Development",
       status: "Active",
     },
@@ -51,7 +51,7 @@ export default function Certifications() {
       expiryDate: "Never",
       credentialId: "4139-26683415",
       verifyUrl: "https://alison.com/certification/check/331a01eb09",
-      logo: "",
+      logo: "../assets/alison.jpeg",
       category: "Programming",
       status: "Active",
     },
@@ -64,7 +64,7 @@ export default function Certifications() {
       credentialId: "UC-dd9d026e-d6d0-4048-beca-e52617c07af2",
       verifyUrl:
         "https://www.udemy.com/certificate/UC-dd9d026e-d6d0-4048-beca-e52617c07af2/",
-      logo: "",
+      logo: "../assets/udemy.jpg",
       category: "Programming",
       status: "Active",
     },
@@ -77,7 +77,7 @@ export default function Certifications() {
       credentialId: "AWS-EDUCATE-2025",
       verifyUrl:
         "https://www.credly.com/badges/61212020-d6d2-4ea0-98f4-80ff390e1d45/public_url",
-      logo: "",
+      logo: "../assets/aws.png",
       category: "Cloud",
       status: "Active",
     },
@@ -89,7 +89,7 @@ export default function Certifications() {
       expiryDate: "Never",
       credentialId: "SOLOLEARN-ANGULAR-2025",
       verifyUrl: "https://www.sololearn.com/certificates/CC-KT3LWRMW",
-      logo: "",
+      logo: "../assets/sololearn.png",
       category: "Web Development",
       status: "Active",
     },
@@ -102,7 +102,7 @@ export default function Certifications() {
       credentialId: "GITHUB-INTRO-2025",
       verifyUrl:
         "https://learn.microsoft.com/api/achievements/share/en-us/ABEYWARDENAMB-3331/BC6AJEUD?sharingId=699F40254D109152",
-      logo: "",
+      logo: "../assets/microsoft.jpg",
       category: "Development Tools",
       status: "Active",
     },
@@ -115,7 +115,7 @@ export default function Certifications() {
       credentialId: "IBM-CYBER-2025",
       verifyUrl:
         "https://www.credly.com/badges/19971531-e85a-4eca-8a06-6ff35a31226e/public_url",
-      logo: "",
+      logo: "../assets/ibm.png",
       category: "Security",
       status: "Active",
     },
@@ -128,7 +128,7 @@ export default function Certifications() {
       credentialId: "AZURE-FUNDAMENTALS-2025",
       verifyUrl:
         "https://learn.microsoft.com/en-us/users/abeywardenamb-3331/achievements/pldz6534?ref=https%3A%2F%2Fwww.linkedin.com%2F",
-      logo: "",
+      logo: "../assets/microsoft.jpg",
       category: "Cloud",
       status: "Active",
     },
