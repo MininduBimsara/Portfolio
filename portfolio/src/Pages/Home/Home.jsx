@@ -7,6 +7,8 @@ import MySkills from "../../Components/MySkills";
 import Testimonial from "../../Components/Testimonials";
 import Fixedpanel from "../../Components/FixedPanel";
 import MediumBlogs from "../../Components/Blogs";
+import EducationSection from "../../Components/Education";
+import Certifications from "../../Components/Certifications";
 import React, { useEffect, useState } from "react";
 
 export default function Home() {
@@ -45,6 +47,8 @@ export default function Home() {
         <div className="w-full md:w-3/5 lg:w-2/3 bg-gray-900">
           <AboutMe />
           <MySkills />
+          <EducationSection />
+          <Certifications />
           <MyPortfolio />
           <MediumBlogs />
           <ContactMe />

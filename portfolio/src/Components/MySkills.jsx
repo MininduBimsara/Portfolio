@@ -1,18 +1,4 @@
-import React, { useState, useEffect } from "react";
-import {
-  Code,
-  Database,
-  Smartphone,
-  Layout,
-  ChevronLeft,
-  ChevronRight,
-  BarChart2,
-  Users,
-  Lightbulb,
-  Clipboard,
-} from "lucide-react";
-
-// Combined technical and soft skills data with orange theme
+// Enhanced skills data with additional properties
 const skillsData = [
   // Technical Skills
   {
@@ -21,8 +7,10 @@ const skillsData = [
     description:
       "Creating responsive and interactive user interfaces using React, Vue, and modern CSS.",
     level: 90,
-    color: "#FF6B35", // Vibrant orange
+    color: "#FF6B35",
     category: "technical",
+    gradient: "from-orange-500 to-red-500",
+    expertise: "Expert",
   },
   {
     icon: <Database />,
@@ -32,6 +20,8 @@ const skillsData = [
     level: 80,
     color: "#FF6B35",
     category: "technical",
+    gradient: "from-orange-500 to-amber-500",
+    expertise: "Advanced",
   },
   {
     icon: <Smartphone />,
@@ -41,6 +31,8 @@ const skillsData = [
     level: 95,
     color: "#FF6B35",
     category: "technical",
+    gradient: "from-orange-500 to-yellow-500",
+    expertise: "Expert",
   },
   {
     icon: <Layout />,
@@ -49,8 +41,9 @@ const skillsData = [
     level: 85,
     color: "#FF6B35",
     category: "technical",
+    gradient: "from-orange-500 to-pink-500",
+    expertise: "Advanced",
   },
-  // Soft Skills from the image
   {
     icon: <BarChart2 />,
     title: "Analytics",
@@ -59,6 +52,8 @@ const skillsData = [
     level: 88,
     color: "#FF6B35",
     category: "soft",
+    gradient: "from-blue-500 to-purple-500",
+    expertise: "Advanced",
   },
   {
     icon: <Users />,
@@ -68,6 +63,8 @@ const skillsData = [
     level: 92,
     color: "#FF6B35",
     category: "soft",
+    gradient: "from-green-500 to-teal-500",
+    expertise: "Expert",
   },
   {
     icon: <Users />,
@@ -77,6 +74,8 @@ const skillsData = [
     level: 90,
     color: "#FF6B35",
     category: "soft",
+    gradient: "from-purple-500 to-indigo-500",
+    expertise: "Expert",
   },
   {
     icon: <Layout />,
@@ -86,6 +85,8 @@ const skillsData = [
     level: 85,
     color: "#FF6B35",
     category: "technical",
+    gradient: "from-orange-500 to-red-600",
+    expertise: "Advanced",
   },
   {
     icon: <Lightbulb />,
@@ -95,6 +96,8 @@ const skillsData = [
     level: 93,
     color: "#FF6B35",
     category: "soft",
+    gradient: "from-yellow-500 to-orange-500",
+    expertise: "Expert",
   },
   {
     icon: <Clipboard />,
@@ -104,6 +107,8 @@ const skillsData = [
     level: 87,
     color: "#FF6B35",
     category: "soft",
+    gradient: "from-cyan-500 to-blue-500",
+    expertise: "Advanced",
   },
 ];
 
@@ -111,7 +116,8 @@ const SkillsShowcase = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState(null);
-  const [category, setCategory] = useState("all"); // all, technical, soft
+  const [category, setCategory] = useState("all");
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   // Filter skills based on selected category
   const filteredSkills = skillsData.filter((skill) =>
@@ -119,7 +125,6 @@ const SkillsShowcase = () => {
   );
 
   useEffect(() => {
-    // Reset active index when category changes
     setActiveIndex(0);
   }, [category]);
 
@@ -149,14 +154,13 @@ const SkillsShowcase = () => {
       setActiveIndex((current) =>
         current === filteredSkills.length - 1 ? 0 : current + 1
       );
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [filteredSkills.length]);
 
-  // Trigger animation for circle progress when component mounts
+  // Enhanced progress animation
   useEffect(() => {
-    // Small delay to ensure DOM is ready
     const timer = setTimeout(() => {
       const elements = document.querySelectorAll(".skill-progress");
       elements.forEach((el, index) => {
@@ -169,12 +173,11 @@ const SkillsShowcase = () => {
         }
       });
 
-      // For soft skills horizontal bar animation
       const softSkillBars = document.querySelectorAll(".soft-skill-progress");
       softSkillBars.forEach((el) => {
         el.style.width = el.getAttribute("data-progress") + "%";
       });
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [filteredSkills, activeIndex]);
@@ -191,7 +194,6 @@ const SkillsShowcase = () => {
     );
   };
 
-  // Touch handlers for mobile swiping
   const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
@@ -202,13 +204,10 @@ const SkillsShowcase = () => {
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchStartX - touchEndX;
 
-    // Swipe threshold (50px)
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
-        // Swipe left, go to next
         nextSlide();
       } else {
-        // Swipe right, go to previous
         prevSlide();
       }
     }
@@ -216,7 +215,6 @@ const SkillsShowcase = () => {
     setTouchStartX(null);
   };
 
-  // Calculate the circumference and stroke dash values for each skill
   const calculateStrokeDashArray = (radius) => {
     return 2 * Math.PI * radius;
   };
@@ -226,147 +224,264 @@ const SkillsShowcase = () => {
     return circumference * (1 - percentage / 100);
   };
 
-  // Render different card style based on skill category
   const renderSkillCard = (skill, index) => {
+    const isHovered = hoveredCard === index;
+
     if (skill.category === "technical") {
-      // Technical skill - keep the original circular progress design
       return (
-        <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg w-full mx-auto transform transition-transform duration-300 hover:scale-105">
-          {/* Category badge */}
-          <div className="flex justify-end mb-2">
-            <span className="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">
-              Technical
-            </span>
+        <div
+          className={`group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-2xl w-full mx-auto transform transition-all duration-500 hover:scale-105 hover:rotate-1 border border-gray-200 dark:border-gray-700 overflow-hidden ${
+            isHovered ? "shadow-orange-500/25" : ""
+          }`}
+          onMouseEnter={() => setHoveredCard(index)}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          {/* Animated background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          {/* Floating particles effect */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-orange-400 rounded-full animate-ping opacity-0 group-hover:opacity-50"
+                style={{
+                  left: `${20 + i * 15}%`,
+                  top: `${10 + i * 10}%`,
+                  animationDelay: `${i * 0.2}s`,
+                  animationDuration: "2s",
+                }}
+              ></div>
+            ))}
           </div>
 
-          {/* Circular progress indicator */}
-          <div className="relative w-40 h-40 mx-auto">
-            {/* Fixed SVG with explicit dimensions */}
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 160 160"
-              style={{ transform: "rotate(-90deg)" }}
-            >
-              {/* Background circle */}
-              <circle
-                cx="80"
-                cy="80"
-                r="70"
-                fill="transparent"
-                stroke="#f2f2f2"
-                strokeWidth="10"
-                strokeLinecap="round"
-              />
-              {/* Progress circle with animation - Animation now controlled by useEffect */}
-              <circle
-                cx="80"
-                cy="80"
-                r="70"
-                fill="transparent"
-                stroke={skill.color}
-                strokeWidth="12"
-                strokeDasharray={calculateStrokeDashArray(70)}
-                strokeDashoffset={calculateStrokeDashArray(70)} // Start at 0%
-                strokeLinecap="round"
-                className="skill-progress"
-                style={{
-                  transition: "stroke-dashoffset 1.5s ease-in-out",
-                }}
-              />
-            </svg>
-            {/* Icon and percentage text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div className="p-3 rounded-full bg-orange-100 text-orange-500 mb-2">
-                {React.cloneElement(skill.icon, { size: 24 })}
-              </div>
-              <span className="text-3xl font-bold text-gray-800 dark:text-white">
-                {skill.level}%
+          {/* Enhanced category badge */}
+          <div className="flex justify-between items-center mb-6">
+            <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium shadow-lg">
+              Technical
+            </span>
+            <div className="flex items-center gap-1">
+              <Star className="w-4 h-4 text-yellow-500 fill-current" />
+              <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                {skill.expertise}
               </span>
             </div>
           </div>
 
-          {/* Skill title and description */}
-          <div className="text-center mt-6">
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+          {/* Enhanced circular progress */}
+          <div className="relative w-48 h-48 mx-auto">
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 180 180"
+              style={{ transform: "rotate(-90deg)" }}
+            >
+              {/* Outer glow effect */}
+              <circle
+                cx="90"
+                cy="90"
+                r="80"
+                fill="transparent"
+                stroke="url(#glowGradient)"
+                strokeWidth="2"
+                className="animate-pulse"
+              />
+              {/* Background circle */}
+              <circle
+                cx="90"
+                cy="90"
+                r="75"
+                fill="transparent"
+                stroke="#f3f4f6"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              {/* Progress circle */}
+              <circle
+                cx="90"
+                cy="90"
+                r="75"
+                fill="transparent"
+                stroke="url(#progressGradient)"
+                strokeWidth="10"
+                strokeDasharray={calculateStrokeDashArray(75)}
+                strokeDashoffset={calculateStrokeDashArray(75)}
+                strokeLinecap="round"
+                className="skill-progress drop-shadow-lg"
+                style={{
+                  transition:
+                    "stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)",
+                  filter: "drop-shadow(0 0 8px rgba(255, 107, 53, 0.3))",
+                }}
+              />
+              {/* Gradient definitions */}
+              <defs>
+                <linearGradient
+                  id="progressGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#FF6B35" />
+                  <stop offset="50%" stopColor="#FF8E53" />
+                  <stop offset="100%" stopColor="#FFB370" />
+                </linearGradient>
+                <linearGradient
+                  id="glowGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#FF6B35" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#FFB370" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* Enhanced center content */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div
+                className={`p-4 rounded-2xl bg-gradient-to-br ${skill.gradient} text-white mb-3 shadow-xl transform transition-transform duration-300 group-hover:scale-110`}
+              >
+                {React.cloneElement(skill.icon, { size: 32 })}
+              </div>
+              <span className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                {skill.level}%
+              </span>
+              <div className="flex mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-1.5 h-1.5 rounded-full mx-0.5 transition-colors duration-300 ${
+                      i < Math.floor(skill.level / 20)
+                        ? "bg-orange-500"
+                        : "bg-gray-300"
+                    }`}
+                  ></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Enhanced title and description */}
+          <div className="text-center mt-8">
+            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-orange-500 transition-colors duration-300">
               {skill.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
               {skill.description}
             </p>
+          </div>
+
+          {/* Skill level indicator */}
+          <div className="mt-6 flex justify-center">
+            <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full text-white text-xs font-medium shadow-lg">
+              {skill.level >= 90
+                ? "Expert Level"
+                : skill.level >= 80
+                ? "Advanced"
+                : "Proficient"}
+            </div>
           </div>
         </div>
       );
     } else {
-      // Soft skill - new horizontal bar design with same color theme
       return (
-        <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg w-full mx-auto transform transition-transform duration-300 hover:scale-105">
-          {/* Category badge */}
-          <div className="flex justify-end mb-2">
-            <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">
+        <div
+          className={`group relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-2xl w-full mx-auto transform transition-all duration-500 hover:scale-105 hover:-rotate-1 border border-gray-200 dark:border-gray-700 overflow-hidden ${
+            isHovered ? "shadow-green-500/25" : ""
+          }`}
+          onMouseEnter={() => setHoveredCard(index)}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          {/* Animated background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          {/* Enhanced category badge */}
+          <div className="flex justify-between items-center mb-6">
+            <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium shadow-lg">
               Soft Skill
             </span>
+            <div className="flex items-center gap-1">
+              <Zap className="w-4 h-4 text-yellow-500" />
+              <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                {skill.expertise}
+              </span>
+            </div>
           </div>
 
-          {/* Soft skill header with icon */}
-          <div className="flex items-center mb-6">
-            <div className="p-4 rounded-xl bg-orange-100 text-orange-500 mr-4">
-              {React.cloneElement(skill.icon, { size: 28 })}
+          {/* Enhanced soft skill header */}
+          <div className="flex items-center mb-8">
+            <div
+              className={`p-5 rounded-2xl bg-gradient-to-br ${skill.gradient} text-white mr-6 shadow-xl transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12`}
+            >
+              {React.cloneElement(skill.icon, { size: 32 })}
             </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white group-hover:text-green-600 transition-colors duration-300">
                 {skill.title}
               </h3>
-              <div className="flex items-center mt-1">
-                <span className="font-bold text-orange-500 text-lg mr-2">
+              <div className="flex items-center mt-2">
+                <span className="font-bold text-green-600 text-xl mr-3">
                   {skill.level}%
                 </span>
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <div
+                    <Star
                       key={i}
-                      className={`w-2 h-2 rounded-full mx-0.5 ${
+                      className={`w-4 h-4 mx-0.5 transition-colors duration-300 ${
                         i < Math.floor(skill.level / 20)
-                          ? "bg-orange-500"
-                          : "bg-gray-300 dark:bg-gray-500"
+                          ? "text-yellow-500 fill-current"
+                          : "text-gray-300 dark:text-gray-500"
                       }`}
-                    ></div>
+                    />
                   ))}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Horizontal progress bar */}
-          <div className="w-full bg-gray-200 dark:bg-gray-600 h-3 rounded-full overflow-hidden mb-4">
+          {/* Enhanced progress bar with animation */}
+          <div className="relative w-full bg-gray-200 dark:bg-gray-600 h-4 rounded-full overflow-hidden mb-6 shadow-inner">
             <div
-              className="soft-skill-progress h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full w-0"
+              className={`soft-skill-progress h-full bg-gradient-to-r ${skill.gradient} rounded-full w-0 relative shadow-lg`}
               data-progress={skill.level}
-              style={{ transition: "width 1.5s ease-in-out" }}
-            ></div>
+              style={{ transition: "width 2s cubic-bezier(0.4, 0, 0.2, 1)" }}
+            >
+              {/* Animated shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 animate-pulse"></div>
+            </div>
           </div>
 
-          {/* Descriptive text */}
-          <p className="text-gray-600 dark:text-gray-300 text-sm border-l-4 border-orange-400 pl-3 mt-4">
+          {/* Enhanced description */}
+          <p className="text-gray-600 dark:text-gray-300 text-sm border-l-4 border-green-400 pl-4 mt-6 leading-relaxed italic">
             {skill.description}
           </p>
 
-          {/* Skill tags */}
-          <div className="flex flex-wrap gap-2 mt-4">
+          {/* Enhanced skill tags */}
+          <div className="flex flex-wrap gap-2 mt-6">
             {getSkillTags(skill.title).map((tag, i) => (
               <span
                 key={i}
-                className="px-2 py-1 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 text-xs rounded-full"
+                className={`px-3 py-1 bg-gradient-to-r ${skill.gradient} text-white text-xs rounded-full shadow-md transform transition-transform duration-300 hover:scale-105`}
               >
                 {tag}
               </span>
             ))}
+          </div>
+
+          {/* Floating achievement badge */}
+          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+              <Star className="w-4 h-4 text-white fill-current" />
+            </div>
           </div>
         </div>
       );
     }
   };
 
-  // Helper function to generate relevant tags for soft skills
   const getSkillTags = (skillTitle) => {
     const tagMap = {
       Analytics: ["Data Analysis", "Insight", "Metrics"],
@@ -382,114 +497,145 @@ const SkillsShowcase = () => {
   return (
     <section
       id="skills-section"
-      className="py-16 relative overflow-hidden w-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900"
+      className="py-20 relative overflow-hidden w-full bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
     >
-      {/* Background dot texture pattern - matching hero section */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-black bg-opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IndoaXRlIi8+PC9zdmc+')] bg-repeat"></div>
+      {/* Enhanced background with animated elements */}
+      <div className="absolute inset-0">
+        {/* Animated background shapes */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-orange-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-transparent rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-500/5 to-transparent rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+
+        {/* Enhanced dot pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4yIi8+PC9zdmc+')] bg-repeat"></div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 md:px-12 relative z-10">
-        {/* Improved Heading at the top of the section */}
+        {/* Enhanced header section */}
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-20 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          {/* Redesigned header section */}
-          <div className="bg-gray-900 rounded-lg p-8 max-w-lg mx-auto shadow-xl relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-500"></div>
-            <div className="absolute -top-12 -right-12 w-24 h-24 rounded-full bg-orange-500 opacity-10"></div>
-            <div className="absolute -bottom-16 -left-16 w-32 h-32 rounded-full bg-orange-400 opacity-10"></div>
+          <div className="bg-gradient-to-r from-gray-900 to-slate-900 rounded-2xl p-10 max-w-2xl mx-auto shadow-2xl relative overflow-hidden border border-gray-700">
+            {/* Enhanced decorative elements */}
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500"></div>
+            <div className="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 opacity-20 blur-xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-20 blur-xl"></div>
 
-            {/* Pill indicator with animation */}
-            <div className="flex justify-center mb-4">
-              <div className="px-4 py-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full text-sm font-medium text-white inline-flex items-center gap-2 shadow-md">
-                <span className="h-2 w-2 rounded-full bg-white animate-pulse"></span>
-                My Expertise
+            {/* Animated expertise indicator */}
+            <div className="flex justify-center mb-6">
+              <div className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full text-sm font-medium text-white inline-flex items-center gap-3 shadow-xl">
+                <div className="flex gap-1">
+                  <div className="h-2 w-2 rounded-full bg-white animate-bounce"></div>
+                  <div
+                    className="h-2 w-2 rounded-full bg-white animate-bounce"
+                    style={{ animationDelay: "0.1s" }}
+                  ></div>
+                  <div
+                    className="h-2 w-2 rounded-full bg-white animate-bounce"
+                    style={{ animationDelay: "0.2s" }}
+                  ></div>
+                </div>
+                Professional Expertise
               </div>
             </div>
 
-            {/* Title with emphasis */}
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Professional <span className="text-orange-500">Skills</span>
+            {/* Enhanced title */}
+            <h2 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 mb-6">
+              My{" "}
+              <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                Skills
+              </span>
             </h2>
 
-            {/* Description with improved typography */}
-            <p className="text-gray-300 max-w-md mx-auto leading-relaxed">
-              Here's a showcase of my technical expertise and professional
-              capabilities
+            {/* Enhanced description */}
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+              A comprehensive showcase of my technical expertise and
+              professional capabilities, refined through years of hands-on
+              experience and continuous learning.
             </p>
 
-            {/* Skill category toggle */}
-            <div className="flex justify-center gap-2 mt-6">
-              <button
-                onClick={() => setCategory("all")}
-                className={`px-4 py-2 rounded-full text-sm transition-colors duration-300 ${
-                  category === "all"
-                    ? "bg-orange-500 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
-              >
-                All Skills
-              </button>
-              <button
-                onClick={() => setCategory("technical")}
-                className={`px-4 py-2 rounded-full text-sm transition-colors duration-300 ${
-                  category === "technical"
-                    ? "bg-orange-500 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
-              >
-                Technical
-              </button>
-              <button
-                onClick={() => setCategory("soft")}
-                className={`px-4 py-2 rounded-full text-sm transition-colors duration-300 ${
-                  category === "soft"
-                    ? "bg-orange-500 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
-              >
-                Soft Skills
-              </button>
+            {/* Enhanced category toggle */}
+            <div className="flex justify-center gap-3 mb-8">
+              {[
+                {
+                  key: "all",
+                  label: "All Skills",
+                  icon: <Star className="w-4 h-4" />,
+                },
+                {
+                  key: "technical",
+                  label: "Technical",
+                  icon: <Code className="w-4 h-4" />,
+                },
+                {
+                  key: "soft",
+                  label: "Soft Skills",
+                  icon: <Users className="w-4 h-4" />,
+                },
+              ].map(({ key, label, icon }) => (
+                <button
+                  key={key}
+                  onClick={() => setCategory(key)}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                    category === key
+                      ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-xl transform scale-105"
+                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white shadow-lg"
+                  }`}
+                >
+                  {icon}
+                  {label}
+                </button>
+              ))}
             </div>
 
-            {/* Navigation arrow indicators in white */}
-            <div className="flex justify-between mt-6">
+            {/* Enhanced navigation controls */}
+            <div className="flex justify-between items-center">
               <button
                 onClick={prevSlide}
-                className="text-white hover:text-orange-400 transition-colors duration-300 flex items-center gap-1 group"
+                className="text-gray-400 hover:text-orange-400 transition-all duration-300 flex items-center gap-2 group hover:scale-110"
               >
-                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+                <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" />
                 <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   Previous
                 </span>
               </button>
+
+              <div className="text-gray-400 text-sm">
+                {activeIndex + 1} / {filteredSkills.length}
+              </div>
+
               <button
                 onClick={nextSlide}
-                className="text-white hover:text-orange-400 transition-colors duration-300 flex items-center gap-1 group"
+                className="text-gray-400 hover:text-orange-400 transition-all duration-300 flex items-center gap-2 group hover:scale-110"
               >
                 <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   Next
                 </span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Carousel - Fixed for mobile */}
+        {/* Enhanced carousel */}
         <div
           className="relative w-full mx-auto"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Carousel container */}
           <div className="overflow-hidden">
             <div
-              className="flex transition-transform duration-500 ease-in-out w-full"
+              className="flex transition-transform duration-700 ease-out w-full"
               style={{
                 transform: `translateX(-${activeIndex * 100}%)`,
               }}
@@ -497,10 +643,9 @@ const SkillsShowcase = () => {
               {filteredSkills.map((skill, index) => (
                 <div
                   key={index}
-                  className="w-full flex-shrink-0 flex justify-center"
+                  className="w-full flex-shrink-0 flex justify-center px-4"
                 >
-                  <div className="flex flex-col items-center justify-center w-full max-w-xs">
-                    {/* Render different card designs based on skill type */}
+                  <div className="flex flex-col items-center justify-center w-full max-w-md">
                     {renderSkillCard(skill, index)}
                   </div>
                 </div>
@@ -508,16 +653,16 @@ const SkillsShowcase = () => {
             </div>
           </div>
 
-          {/* Carousel indicator dots */}
-          <div className="flex justify-center mt-8 flex-wrap gap-2">
+          {/* Enhanced indicator dots */}
+          <div className="flex justify-center mt-12 flex-wrap gap-3">
             {filteredSkills.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`mx-1 h-3 rounded-full transition-all ease-in-out duration-300 ${
+                className={`h-3 rounded-full transition-all ease-in-out duration-500 transform hover:scale-125 ${
                   activeIndex === index
-                    ? "bg-orange-500 w-8"
-                    : "bg-gray-300 dark:bg-gray-600 hover:bg-orange-300 w-3"
+                    ? "bg-gradient-to-r from-orange-500 to-red-500 w-12 shadow-lg"
+                    : "bg-gray-600 hover:bg-orange-300 w-3 hover:w-8"
                 }`}
                 aria-label={`Go to skill ${index + 1}`}
               ></button>
@@ -525,19 +670,19 @@ const SkillsShowcase = () => {
           </div>
         </div>
 
-        {/* Mobile navigation controls - improved styling */}
-        <div className="mt-6 flex justify-center md:hidden">
+        {/* Enhanced mobile controls */}
+        <div className="mt-10 flex justify-center gap-4 md:hidden">
           <button
             onClick={prevSlide}
-            className="mx-2 bg-gray-800 hover:bg-orange-500 text-white px-4 py-2 rounded-full transition-colors duration-300 flex items-center gap-2"
+            className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-orange-500 hover:to-red-500 text-white px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 shadow-xl transform hover:scale-105"
           >
-            <ChevronLeft className="w-4 h-4" /> Previous
+            <ChevronLeft className="w-5 h-5" /> Previous
           </button>
           <button
             onClick={nextSlide}
-            className="mx-2 bg-gray-800 hover:bg-orange-500 text-white px-4 py-2 rounded-full transition-colors duration-300 flex items-center gap-2"
+            className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-orange-500 hover:to-red-500 text-white px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 shadow-xl transform hover:scale-105"
           >
-            Next <ChevronRight className="w-4 h-4" />
+            Next <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>

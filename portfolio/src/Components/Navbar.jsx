@@ -67,9 +67,7 @@ function Navbar() {
                   }`}
                 ></div>
                 {isExpanded && (
-                  <span className="text-white font-medium transition-opacity duration-300">
-                    
-                  </span>
+                  <span className="text-white font-medium transition-opacity duration-300"></span>
                 )}
               </div>
 
@@ -114,6 +112,36 @@ function Navbar() {
                         }`}
                       >
                         Services
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        activeClass="text-orange-300"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        to="education"
+                        className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                          activeSection === "education" ? "font-medium" : ""
+                        }`}
+                      >
+                        Education
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        activeClass="text-orange-300"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        to="Certifications"
+                        className={`text-white hover:text-orange-300 transition-colors cursor-pointer ${
+                          activeSection === "Certifications" ? "font-medium" : ""
+                        }`}
+                      >
+                        Certifications
                       </Link>
                     </li>
                     <li>
