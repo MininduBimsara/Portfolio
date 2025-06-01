@@ -258,7 +258,7 @@ export default function EducationSection() {
               }`}
             >
               {/* Mobile-First Timeline */}
-              <div className="relative">
+              <div className="relative pt-8">
                 {/* Timeline Line - Simplified for mobile */}
                 <div className="absolute left-6 sm:left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500/60 via-orange-500/40 to-transparent lg:transform lg:-translate-x-0.5"></div>
 
@@ -276,12 +276,20 @@ export default function EducationSection() {
                     <div className="absolute lg:top-10 left-6 sm:left-8 lg:left-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-orange-500 rounded-full border-2 sm:border-4 border-gray-900 lg:transform lg:-translate-x-2 shadow-lg shadow-orange-500/30 z-10"></div>
 
                     {/* Year Badge */}
-                    <div className="absolute left-12 sm:left-16 top-0 lg:left-1/2 lg:top-10 lg:transform lg:-translate-x-1/2 lg:-translate-y-12">
+                    <div
+                      className={`
+                                  absolute 
+                                  
+                                  left-12 sm:left-16 
+                                  -top-7 sm:-top-6 
+                                  lg:left-1/2 lg:top-10 
+                                  lg:transform lg:-translate-x-1/2 lg:-translate-y-12
+                              `}
+                    >
                       <div className="bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 text-orange-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                         {education.year}
                       </div>
                     </div>
-
                     {/* Content Card - Mobile-first approach */}
                     <div className="ml-16 sm:ml-20 lg:ml-0 lg:w-full">
                       {/* Desktop: Alternating layout */}
