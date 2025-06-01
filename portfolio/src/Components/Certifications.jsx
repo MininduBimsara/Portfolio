@@ -26,7 +26,7 @@ export default function Certifications() {
       credentialId: "UC-36788f9ab-66c7-4be0-a58c-c251441d1239",
       verifyUrl:
         "https://www.udemy.com/certificate/UC-36788f9ab-66c7-4be0-a58c-c251441d1239/",
-      logo: "/img/udemy-logo.png",
+      logo: "",
       category: "Programming",
       status: "Active",
     },
@@ -39,7 +39,7 @@ export default function Certifications() {
       credentialId: "UC-47d6e1ac-e1cd-4193-9a31-f590ceb4b0fa",
       verifyUrl:
         "https://www.udemy.com/certificate/UC-47d6e1ac-e1cd-4193-9a31-f590ceb4b0fa/",
-      logo: "/img/udemy-logo.png",
+      logo: "",
       category: "Web Development",
       status: "Active",
     },
@@ -51,7 +51,7 @@ export default function Certifications() {
       expiryDate: "Never",
       credentialId: "4139-26683415",
       verifyUrl: "https://alison.com/certification/check/331a01eb09",
-      logo: "/img/alison-logo.png",
+      logo: "",
       category: "Programming",
       status: "Active",
     },
@@ -64,7 +64,7 @@ export default function Certifications() {
       credentialId: "UC-dd9d026e-d6d0-4048-beca-e52617c07af2",
       verifyUrl:
         "https://www.udemy.com/certificate/UC-dd9d026e-d6d0-4048-beca-e52617c07af2/",
-      logo: "/img/udemy-logo.png",
+      logo: "",
       category: "Programming",
       status: "Active",
     },
@@ -77,7 +77,7 @@ export default function Certifications() {
       credentialId: "AWS-EDUCATE-2025",
       verifyUrl:
         "https://www.credly.com/badges/61212020-d6d2-4ea0-98f4-80ff390e1d45/public_url",
-      logo: "/img/aws-logo.png",
+      logo: "",
       category: "Cloud",
       status: "Active",
     },
@@ -89,7 +89,7 @@ export default function Certifications() {
       expiryDate: "Never",
       credentialId: "SOLOLEARN-ANGULAR-2025",
       verifyUrl: "https://www.sololearn.com/certificates/CC-KT3LWRMW",
-      logo: "/img/sololearn-logo.png",
+      logo: "",
       category: "Web Development",
       status: "Active",
     },
@@ -102,7 +102,7 @@ export default function Certifications() {
       credentialId: "GITHUB-INTRO-2025",
       verifyUrl:
         "https://learn.microsoft.com/api/achievements/share/en-us/ABEYWARDENAMB-3331/BC6AJEUD?sharingId=699F40254D109152",
-      logo: "/img/microsoft-logo.png",
+      logo: "",
       category: "Development Tools",
       status: "Active",
     },
@@ -115,7 +115,7 @@ export default function Certifications() {
       credentialId: "IBM-CYBER-2025",
       verifyUrl:
         "https://www.credly.com/badges/19971531-e85a-4eca-8a06-6ff35a31226e/public_url",
-      logo: "/img/ibm-logo.png",
+      logo: "",
       category: "Security",
       status: "Active",
     },
@@ -128,7 +128,7 @@ export default function Certifications() {
       credentialId: "AZURE-FUNDAMENTALS-2025",
       verifyUrl:
         "https://learn.microsoft.com/en-us/users/abeywardenamb-3331/achievements/pldz6534?ref=https%3A%2F%2Fwww.linkedin.com%2F",
-      logo: "/img/microsoft-logo.png",
+      logo: "",
       category: "Cloud",
       status: "Active",
     },
@@ -289,15 +289,17 @@ export default function Certifications() {
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden">
-                          <img
-                            src={cert.logo}
-                            alt={`${cert.provider} logo`}
-                            className="w-8 h-8 object-contain"
-                            onError={(e) => {
-                              e.target.style.display = "none";
-                              e.target.nextSibling.style.display = "block";
-                            }}
-                          />
+                          {cert.logo ? (
+                            <img
+                              src={cert.logo}
+                              alt={`${cert.provider} logo`}
+                              className="w-8 h-8 object-contain"
+                              onError={(e) => {
+                                e.target.style.display = "none";
+                                e.target.nextSibling.style.display = "block";
+                              }}
+                            />
+                          ) : null}
                           <Award className="h-6 w-6 text-orange-400 hidden" />
                         </div>
                         <div className="flex items-center gap-2">
