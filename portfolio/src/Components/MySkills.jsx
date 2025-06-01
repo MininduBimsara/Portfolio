@@ -1,3 +1,19 @@
+import React, { useState, useEffect } from "react";
+import {
+  Code,
+  Database,
+  Smartphone,
+  Layout,
+  BarChart2,
+  Users,
+  Lightbulb,
+  Clipboard,
+  Star,
+  Zap,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
 // Enhanced skills data with additional properties
 const skillsData = [
   // Technical Skills
