@@ -398,7 +398,7 @@ export default function Certifications() {
         <div className="text-center">
           <div className="inline-flex flex-col sm:flex-row gap-4 sm:gap-6">
             <a
-              href="https://www.linkedin.com/in/yourprofile/details/certifications/"
+              href="https://www.linkedin.com/in/minindu-abeywardena/details/certifications/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-3 group shadow-lg hover:shadow-orange-500/25"
