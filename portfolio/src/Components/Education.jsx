@@ -273,10 +273,10 @@ export default function EducationSection() {
                     style={{ transitionDelay: `${1000 + index * 200}ms` }}
                   >
                     {/* Timeline Node */}
-                    <div className="absolute left-6 sm:left-8 lg:left-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-orange-500 rounded-full border-2 sm:border-4 border-gray-900 lg:transform lg:-translate-x-2 shadow-lg shadow-orange-500/30 z-10"></div>
+                    <div className="absolute lg:top-10 left-6 sm:left-8 lg:left-1/2 w-3 h-3 sm:w-4 sm:h-4 bg-orange-500 rounded-full border-2 sm:border-4 border-gray-900 lg:transform lg:-translate-x-2 shadow-lg shadow-orange-500/30 z-10"></div>
 
                     {/* Year Badge */}
-                    <div className="absolute left-12 sm:left-16 lg:left-1/2 -top-6 sm:-top-8 lg:top-auto lg:transform lg:-translate-x-1/2 lg:-translate-y-12">
+                    <div className="absolute left-12 sm:left-16 lg:left-1/2 lg:top-10 sm:top-20 lg:transform lg:-translate-x-1/2 lg:-translate-y-12">
                       <div className="bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 text-orange-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                         {education.year}
                       </div>
